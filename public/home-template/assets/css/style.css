@@ -374,7 +374,8 @@ a:hover {
 
 .table-cell {
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: text-top;
+    padding-top: 14rem;
 }
 
 /*------/ Ul Resect /------*/
@@ -976,7 +977,7 @@ a:hover {
 # Hero Section
 --------------------------------------------------------------*/
 .intro {
-    height: 88vh;
+    height: 60vh;
     position: relative;
     color: #ffffff;
 }
@@ -1058,7 +1059,7 @@ a:hover {
 @media (min-width: 992px) {
     .intro .intro-title-top {
         font-size: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: 0rem;
     }
 }
 
@@ -1083,7 +1084,7 @@ a:hover {
 
 @media (min-width: 992px) {
     .intro .intro-title {
-        font-size: 4rem;
+        font-size: 1rem;
     }
 }
 
@@ -1112,13 +1113,13 @@ a:hover {
 @media (min-width: 768px) {
     .intro .intro-subtitle.intro-price {
         padding-top: 2rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
 
 @media (min-width: 992px) {
     .intro .intro-subtitle.intro-price {
-        padding-top: 3rem;
+        padding-top: 0rem;
     }
 }
 

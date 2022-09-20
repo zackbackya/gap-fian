@@ -29,6 +29,11 @@
   <link href="{{ asset('home-template/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ asset('home-template/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+  <!-- CSS SLIDER -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('home-template/assets/css/zoomslider.css') }}" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="{{ asset('home-template/assets/js/modernizr-2.6.2.min.js') }}"></script>
 
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
