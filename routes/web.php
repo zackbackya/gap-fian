@@ -65,5 +65,5 @@ Route::get('/login', function () {
 });
 
 Route::get('/dashboard', function () {
-    return 'NANTI SETELAH LOGIN SUKSES MASUK SINI BUAT ATUR CONTENT';
+    return view('admin.dashboard');
 });
