@@ -65,5 +65,45 @@ Route::get('/login', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    return view('admin.dashboard',[
+        "title" => "dashboard"
+    ]);
 });
+
+Route::get('/dashboard/report', function () {
+    return view('admin.report',[
+        "title" => "report"
+    ]);
+});
+
+Route::get('/dashboard/agents', function () {
+    return view('admin.agents',[
+        "title" => "agents"
+    ]);
+});
+
+Route::get('/dashboard/listing', function () {
+    return view('admin.listing',[
+        "title" => "listing"
+    ]);
+});
+
+Route::get('/dashboard/article', function () {
+    return view('admin.article',[
+        "title" => "article"
+    ]);
+});
+
+Route::get('/dashboard/profile', function () {
+    return view('admin.profile',[
+        "title" => "profile"
+    ]);
+});
+
+Route::get('/dashboard/user', function () {
+    return view('admin.user',[
+        "title" => "user"
+    ]);
+});
+
+
