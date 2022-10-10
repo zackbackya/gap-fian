@@ -12,7 +12,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('admin-template/assets/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ a`sset('admin-template/assets/dist/css/adminlte.min.css')}}">
 
     <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.css')}}">
 
