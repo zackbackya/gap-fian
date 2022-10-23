@@ -12,7 +12,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ a`sset('admin-template/assets/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin-template/assets/dist/css/adminlte.min.css')}}">
 
     <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.css')}}">
 
@@ -46,29 +46,34 @@
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-dark">
         <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          </li>
 
+          
+        </ul>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
           <!-- Navbar Search -->
 
+          
+
           <!-- Messages Dropdown Menu -->
+          <li class="nav-item">
+            <form action="/logout" method="POST">
+              @csrf
+              <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
+                Logout</button>
+            </form>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
               <i class="fas fa-expand-arrows-alt"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              data-widget="control-sidebar"
-              data-slide="true"
-              href="#"
-              role="button"
-            >
-              <i class="fas fa-th-large"></i>
-            </a>
-          </li>
+          
         </ul>
       </nav>
       <!-- /.navbar -->
@@ -98,7 +103,7 @@
               />
             </div>
             <div class="info">
-              <a href="#" class="d-block">User</a>
+              <a href="#" class="d-block">{{ auth()->user()->username;}}</a>
             </div>
           </div>
 
@@ -162,6 +167,21 @@
                   <p>User</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="/dashboard/categoryArticle" class="nav-link {{ ($title === "categoryArticle")? 'active' : '' }}">
+                  <i class="nav-icon fa fa-list-ol"></i>
+                  <p>Kategori Article</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="/dashboard/categoryListing" class="nav-link {{ ($title === "categoryListing")? 'active' : '' }}">
+                  <i class="nav-icon fa fa-list"></i>
+                  <p>Kategori Listing</p>
+                </a>
+              </li>
+
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
@@ -240,12 +260,28 @@
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-      "pageLength": 8
+      "pageLength": 10
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
   });
 
-  $('#summernote').summernote()
+  $('#content').summernote();
+  $('#description').summernote();
+
+  $.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+    })
+}
+
+var el = document.querySelector('input.number');
+el.addEventListener('keyup', function (event) {
+  if (event.which >= 37 && event.which <= 40) return;
+
+  this.value = this.value.replace(/\D/g, '')
+                         .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+});
+  
 </script>
 
     <!-- AdminLTE for demo purposes -->

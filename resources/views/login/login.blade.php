@@ -29,14 +29,23 @@ Author URL: http://w3layouts.com
                     <h1>Garda Adhi<span style="color:#2eca6a"> Pratama</span></h1>
                     
                     <h2>Log In</h2>
-                    <form action="/dashboard">
+
+                    @if(session()->has('loginError'))
+                    <div class="alert alert-primary" role="alert">
+                     {{ session('loginError') }}
+                    </div>
+                    <br>
+                    @endif
+
+                    <form action="/login" method="post">
+                        @csrf
                         <div class="input-group">
                             <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Email or Username" required="">
+                            <input type="text" id="username" name="username" placeholder="Username" @error('username') is-invalid @enderror required="" autofocus>
                         </div>
                         <div class="input-group two-groop">
                             <span><i class="fa fa-key" aria-hidden="true"></i></span>
-                            <input type="Password" placeholder="Password" required="">
+                            <input type="Password" id="password" name="password" placeholder="Password" required="">
                         </div>
                         <button class="btn btn-primary btn-block" type="submit">Log In</button>
                     </form>

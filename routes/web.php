@@ -1,5 +1,16 @@
 <?php
 
+use App\Http\Controllers\UserLoginController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AgentController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryArticleController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryListingController;
+use App\Http\Controllers\ListingController;
+use App\Models\Category;
+use App\Models\CategoryArticle;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,9 +71,7 @@ Route::get('/contact', function () {
 
 
 //route for backend page
-Route::get('/login', function () {
-    return view('login.login');
-});
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard',[
@@ -76,23 +85,7 @@ Route::get('/dashboard/report', function () {
     ]);
 });
 
-Route::get('/dashboard/agents', function () {
-    return view('admin.agents',[
-        "title" => "agents"
-    ]);
-});
 
-Route::get('/dashboard/listing', function () {
-    return view('admin.listing',[
-        "title" => "listing"
-    ]);
-});
-
-Route::get('/dashboard/article', function () {
-    return view('admin.article',[
-        "title" => "article"
-    ]);
-});
 
 Route::get('/dashboard/profile', function () {
     return view('admin.profile',[
@@ -100,10 +93,20 @@ Route::get('/dashboard/profile', function () {
     ]);
 });
 
-Route::get('/dashboard/user', function () {
-    return view('admin.user',[
-        "title" => "user"
-    ]);
-});
+//Route::get('/dashboard/article',[ArticleController::class, 'index']);
 
+Route::get('/login',[LoginController::class, 'index'])->middleware('guest');
+Route::post('/login',[LoginController::class, 'authentication']);
+Route::post('/logout',[LoginController::class, 'logout']);
+
+Route::get('/dashboard/article/checkSlug',[ArticleController::class, 'checkSlug']);
+Route::resource('/dashboard/listing',ListingController::class);
+Route::resource('/dashboard/agents',AgentController::class);
+Route::resource('/dashboard/article',ArticleController::class);
+Route::resource('/dashboard/user',UserLoginController::class);
+
+Route::resource('/dashboard/categoryListing',CategoryListingController::class);
+Route::resource('/dashboard/categoryArticle',CategoryArticleController::class);
+
+//Route::post('/add_user',[UserLoginController::class, 'store'])->middleware('auth');
 

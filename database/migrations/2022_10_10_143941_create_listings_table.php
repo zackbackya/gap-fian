@@ -15,6 +15,23 @@ return new class extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->Unique();
+            $table->string('slug')->Unique();
+            $table->string('address');
+            $table->string('categoryListing_id');
+            $table->integer('bedroom');
+            $table->integer('bathroom');
+            $table->integer('building_width');
+            $table->integer('area_width');
+            $table->string('type');
+            $table->integer('garage');
+            $table->integer('price');
+            $table->string('description');
+            $table->string('photo_path');
+            $table->string('agent_id');
+            $table->string('owner_name');
+            $table->string('owner_phone');
+            $table->string('status');
             $table->timestamps();
         });
     }

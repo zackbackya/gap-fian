@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Article</h1>
+            <h1>Data Listing</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Article</li>
+              <li class="breadcrumb-item active">Data Listing</li>
             </ol>
           </div>
         </div>
@@ -190,86 +190,16 @@
       <!-- /.container-fluid -->
 
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal-xl">Add Data</button>
+        <a href="/dashboard/listing/create" class="btn btn-primary"> Add Data
+       
+        </a>
       </div>
     </section>
     <!-- /.content -->
   </div>
 
 
-  <div class="modal fade" id="modal-xl">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Tambah Article</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            
-                
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form class="form-horizontal">
-                  <div class="card-body">
-                    <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Judul</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="article_judul" placeholder="Judul">
-                        </div>
-                      </div>
-        
-                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Content</label>
-                        <div class="col-sm-10">
-                          <div class="card-body">
-                            <textarea id="summernote">
-                              
-                            </textarea>
-                          </div>
-                  
-                        </div>
-                      </div>
-                      
-                      
-                    
-                      <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Sumber</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="article_sumber" placeholder="Sumber">
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Kategori Article</label>
-                        <div class="col-sm-10">
-                            <div class="form-group">
-                                <select class="custom-select">
-                                  <option>Tips</option>
-                                  <option>something</option>                                  
-                                </select>
-                              </div>
-                        </div>
-                      </div>
-                    
-                  </div>
-                  <!-- /.card-body -->
-                  
-                </form>
-              
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <a href="/dashboard/{{ $title }}">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          </a>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
+  
   <!-- /.modal -->
 
   @endsection
