@@ -37,12 +37,22 @@
             </button>
           </div>
         </div>
+
+        <div class="card-body">
+        <div style="max-height: 300px; overflow:hidden">
+          <img
+            src="{{ asset('storage/' . $article->photo_path )}}"
+            alt="{{ $article->title }}"
+          />
+        </div>
+        </div>
+
         <div class="card-body">
           {{ $article->content }}
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-          {{ $article->source }}
+          sumber : {{ $article->source }}
         </div>
         <!-- /.card-footer-->
       </div>

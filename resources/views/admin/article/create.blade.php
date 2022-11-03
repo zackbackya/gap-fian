@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/">
+        <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group row">
@@ -31,7 +31,21 @@
                   <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{ old('slug') }}" readonly>
                 </div>
               </div>
+              <div class="form-group row">
+                <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
+                
+                  <div class="col-sm-10">
+                    <input type="file" class="custom-file-input" id="photo_path" name="photo_path" onchange="previewImage()">
+                    <label class="custom-file-label" for="photo_path"></label>
+                  </div>
 
+                
+                    <img class="img-preview img-fluid" src="/publi/">
+                
+              </div>
+
+           
+             
               <div class="form-group row">
                 <label for="content" class="col-sm-2 col-form-label">Content</label>
                 <div class="col-sm-10">
@@ -67,6 +81,18 @@
                               @endif
                           @endforeach
                                                             
+                        </select>
+                      </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="status" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <select class="custom-select" id="status" name="status"  required>
+                            <option value="T" selected>Aktif</option>
+                            <option value="F">Tidak Aktif</option>                                 
                         </select>
                       </div>
                 </div>
@@ -133,15 +159,10 @@
     .then(data => slug.value = data.slug)
   });
 
-  const title_edit = document.querySelector('#title_edit');
-  const slug_edit= document.querySelector('#slug_edit');
 
 
-  title_edit.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title_edit.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
+
+
 
   </script>
 

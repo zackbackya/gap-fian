@@ -25,7 +25,7 @@
           <div class="col-12">
              <div class="card">
 
-              <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/{{ $article->slug }}">
+              <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/{{ $article->slug }}" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="card-body">
@@ -40,6 +40,15 @@
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{ old('slug', $article->slug) }}" readonly>
                       </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
+                      
+                        <div class="col-sm-10">
+                          <input type="file" class="custom-file-input" id="photo_path" name="photo_path" >
+                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
                     </div>
       
                     <div class="form-group row">
@@ -77,6 +86,18 @@
                                     @endif
                                 @endforeach
                                                                   
+                              </select>
+                            </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="status" class="col-sm-2 col-form-label">Status</label>
+                      <div class="col-sm-10">
+                          <div class="form-group">
+                              <select class="custom-select" id="status" name="status"  required>
+                                  <option value="T" selected>Aktif</option>
+                                  <option value="F">Tidak Aktif</option>                                 
                               </select>
                             </div>
                       </div>
@@ -143,6 +164,7 @@
     .then(response => response.json())
     .then(data => slug.value = data.slug)
   });
+
 
  </script>
 

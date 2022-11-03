@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/">
+        <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group row">
@@ -121,7 +121,7 @@
                 <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
                 
                   <div class="col-sm-10">
-                    <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path') }}" name="photo_path" >
+                    <input type="file" class="custom-file-input" id="photo_path" name="photo_path" >
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                   </div>
               </div>
@@ -206,21 +206,6 @@
     .then(response => response.json())
     .then(data => slug.value = data.slug)
   });
-
-  $('input.number').keyup(function(event) {
-
-// skip for arrow keys
-if(event.which >= 37 && event.which <= 40) return;
-
-// format number
-$(this).val(function(index, value) {
-  return value
-  .replace(/\D/g, "")
-  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  ;
-});
-});
-
 
 
   

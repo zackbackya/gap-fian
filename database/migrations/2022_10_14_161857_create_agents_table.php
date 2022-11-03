@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('instagram');
             $table->string('facebook');
             $table->string('photo_path');
+            $table->string('status');
             $table->timestamps();
         });
     }

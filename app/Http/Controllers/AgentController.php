@@ -44,6 +44,32 @@ class AgentController extends Controller
     public function store(StoreAgentRequest $request)
     {
         //
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'required',
+            'address' => 'required',
+            'categoryListing_id' => 'required',
+            'bedroom' => 'required',
+            'bathroom' => 'required',
+            'type' => 'required',
+            'building_width' => 'required',
+            'area_width' => 'required',
+            'garage' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'photo_path' => 'image|file|max:1024',
+            'agent_id' => 'required',
+            'owner_name' => 'required',
+            'owner_phone' => 'required',
+            'status' => 'required',
+        ]);
+
+        if($validated['photo_path']){
+            $validated['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+        }
+        Agent::create($validated);
+        return redirect('/dashboard/agents')->with('success','Data Sukses Ditambahkan');
+
     }
 
     /**
@@ -55,6 +81,11 @@ class AgentController extends Controller
     public function show(Agent $agent)
     {
         //
+        return view('admin.agent.show',[
+            "title" => "agent",
+            'agent' => $agent
+                           
+        ]);
     }
 
     /**
@@ -66,8 +97,10 @@ class AgentController extends Controller
     public function edit(Agent $agent)
     {
         //
-        return view('admin.agents.edit',[
-            "title" => "agents"
+        return view('admin.agent.edit',[
+            "title" => "agents",
+            'agent' => $agent,
+            'agents' => Agent::all()
         ]);
     }
 
@@ -81,6 +114,35 @@ class AgentController extends Controller
     public function update(UpdateAgentRequest $request, Agent $agent)
     {
         //
+        $rules = [
+            'title' => 'required|max:255',
+            'slug' => 'required',
+            'address' => 'required',
+            'categoryListing_id' => 'required',
+            'bedroom' => 'required',
+            'bathroom' => 'required',
+            'type' => 'required',
+            'building_width' => 'required',
+            'area_width' => 'required',
+            'garage' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'photo_path' => 'image|file|max:1024',
+            'agent_id' => 'required',
+            'owner_name' => 'required',
+            'owner_phone' => 'required',
+            'status' => 'required',
+        ];
+
+        
+
+        $validateData = $request->validate($rules);
+
+        //return dd($article);
+
+        Agent::where('id', $agent->id)
+        ->update($validateData);
+        return redirect('/dashboard/agents')->with('success','Data Sukses Dirubah');
     }
 
     /**
@@ -92,5 +154,8 @@ class AgentController extends Controller
     public function destroy(Agent $agent)
     {
         //
+        Agent::destroy($agent->id);
+        return redirect('/dashboard/agents');//.with('success','Article Sukses Ditambahkan');
+    
     }
 }

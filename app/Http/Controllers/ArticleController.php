@@ -65,10 +65,16 @@ class ArticleController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required',
+            'photo_path' => 'image|file|max:1024',
             'source' => 'required',
             'category_id' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'status' => 'required'
         ]);
+
+        if($validated['photo_path']){
+            $validated['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+        }
         Article::create($validated);
         return redirect('/dashboard/article')->with('success','Article Sukses Ditambahkan');
 
@@ -119,7 +125,8 @@ class ArticleController extends Controller
             'title' => 'required|max:255',
             'source' => 'required',
             'category_id' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'status' => 'required'
         ];
 
         if($request->slug_edit != $article->slug){

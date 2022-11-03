@@ -25,13 +25,14 @@ return new class extends Migration
             $table->integer('area_width');
             $table->string('type');
             $table->integer('garage');
-            $table->integer('price');
+            $table->bigInteger('price');
             $table->string('description');
             $table->string('photo_path');
             $table->string('agent_id');
             $table->string('owner_name');
             $table->string('owner_phone');
             $table->string('status');
+            $table->string('buyer_agent_id')->nullable();
             $table->timestamps();
         });
     }

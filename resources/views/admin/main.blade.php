@@ -16,15 +16,20 @@
 
     <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.css')}}">
 
-    <link
-      rel="stylesheet"
-      href="{{ asset('admin-template/assets/plugins/daterangepicker/daterangepicker.css')}}"
-    />
+    <!-- Datepicker-->
+
+
+    <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/daterangepicker/daterangepicker.css')}}"/>
+    
+    <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}"/>
 
       <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
   </head>
   <body
     class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"
@@ -103,7 +108,7 @@
               />
             </div>
             <div class="info">
-              <a href="#" class="d-block">{{ auth()->user()->username;}}</a>
+              <a href="#" class="d-block">{{ auth()->user()->access;}}</a>
             </div>
           </div>
 
@@ -125,13 +130,25 @@
                   <p>Dashboard</p>
                 </a>
               </li>
+              
+              <?php 
+              $access = auth()->user()->access;
+              
+              if ($access = "Superadmin"){?>
+                
 
-              <li class="nav-item">
-                <a href="/dashboard/report" class="nav-link {{ ($title === "report")? 'active' : '' }}">
-                  <i class="nav-icon fas fa-file"></i>
-                  <p>Report</p>
-                </a>
-              </li>
+<?php            }
+
+              ?>
+                   
+                   <li class="nav-item">
+                    <a href="/dashboard/report" class="nav-link {{ ($title === "report")? 'active' : '' }}">
+                      <i class="nav-icon fas fa-file"></i>
+                      <p>Report</p>
+                    </a>
+                  </li>
+               
+                   
 
               <li class="nav-item">
                 <a href="/dashboard/agents" class="nav-link {{ ($title === "agents")? 'active' : '' }}">
@@ -213,8 +230,10 @@
     </div>
     <!-- ./wrapper -->
 
+   
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{ asset('admin-template/assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('admin-template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -222,6 +241,8 @@
     <script src="{{ asset('admin-template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin-template/assets/dist/js/adminlte.js')}}"></script>
+
+    <script src="{{ asset('admin-template/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->
@@ -232,9 +253,21 @@
     <!-- ChartJS -->
     <script src="{{ asset('admin-template/assets/plugins/chart.js/Chart.min.js')}}"></script>
 
-<!-- date-range-picker -->
-<script src="{{ asset('admin-template/assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
-     <!-- jQuery -->
+
+     <!-- date-range-picker -->
+<script src="{{ asset('admin-template/assets/datepicker/js/bootstrap-datepicker.js')}}"></script>
+<script src="{{ asset('admin-template/assets/datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+
+
+<script src="{{ asset('admin-template/assets/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{ asset('admin-template/assets/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
+    
+    <!-- bootstrap color picker -->
+    <script src="{{ asset('admin-template/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{ asset('admin-template/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    
+
 <script src="{{ asset('admin-template/assets/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin-template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -255,6 +288,7 @@
 
 <script src="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 
+
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -268,7 +302,20 @@
   $('#content').summernote();
   $('#description').summernote();
 
-  $.fn.digits = function(){ 
+  
+
+$(function () {
+        bsCustomFileInput.init();
+      });
+
+      $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+  
+
+
+    $.fn.digits = function(){ 
     return this.each(function(){ 
         $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
     })
@@ -281,12 +328,17 @@ el.addEventListener('keyup', function (event) {
   this.value = this.value.replace(/\D/g, '')
                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 });
-  
+
+
+
+
 </script>
 
     <!-- AdminLTE for demo purposes -->
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('admin-template/assets/dist/js/pages/dashboard2.js')}}"></script>
+
+    
   </body>
 </html>

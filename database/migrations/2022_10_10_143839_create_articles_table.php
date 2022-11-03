@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('title')->Unique();
             $table->string('slug')->Unique();
+            $table->string('photo_path');
             $table->string('content');
             $table->string('source');
             $table->string('category_id');
+            $table->string('status');
             $table->timestamps();
         });
     }

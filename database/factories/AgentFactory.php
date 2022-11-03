@@ -16,8 +16,18 @@ class AgentFactory extends Factory
      */
     public function definition()
     {
+      
         return [
             //
+            'nik' => $this->faker->nik(),
+            'name' => $this->faker->unique()->name(),
+            'sex' => $this->faker->randomElement(['Pria', 'Wanita']),
+            'email' => $this->faker->unique()->safeEmail(),
+            'birthdate' => $this->faker->date(),
+            'address' => $this->faker->ity(),
+            'whatsapp' => $this->faker->unique()->e164PhoneNumber(),
+            'instagram' => $this->faker->lexify(),
+            'photo_path' => '/uploaded_images/zacky.jpg',
         ];
     }
 }

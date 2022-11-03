@@ -38,8 +38,8 @@
                         <select class="custom-select" id="sex" name="sex">
 
                           
-                          <option value="Laki-laki">Laki-laki</option>
-                          <option value="Perempuan">Perempuan</option>
+                          <option value="Pria">Pria</option>
+                          <option value="Wanita">Wanita</option>
                           
                           
                         </select>
@@ -60,8 +60,11 @@
                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
+
+                
                 </div>
                 </div>
+                
               </div>
               <div class="form-group row">
                 <label for="address" class="col-sm-2 col-form-label">Alamat</label>
@@ -100,6 +103,18 @@
                   
                 
               </div>
+
+              <div class="form-group row">
+                <label for="status" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <select class="custom-select" id="status" name="status"  required>
+                            <option value="T" selected>Aktif</option>
+                            <option value="F">Tidak Aktif</option>                                 
+                        </select>
+                      </div>
+                </div>
+              </div>
             
           </div>
           <!-- /.card-body -->
@@ -125,7 +140,6 @@
   
   
   <!-- /.modal -->
-
   <script>
 
   const title = document.querySelector('#title');
@@ -138,8 +152,13 @@
     .then(data => slug.value = data.slug)
   });
 
-  
+  $("#birthdate").datetimepicker({
+          format: "L",
+        });
+
+        <script>
 
   </script>
+
 
   @endsection

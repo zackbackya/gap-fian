@@ -61,23 +61,23 @@ class ListingController extends Controller
     {
         
         $validateData = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required',
+            'nik' => 'required|max:255',
+            'name' => 'required',
+            'sex' => 'required',
+            'email' => 'required',
+            'birthdate' => 'required',
             'address' => 'required',
-            'categoryListing_id' => 'required',
-            'bedroom' => 'required',
-            'bathroom' => 'required',
-            'type' => 'required',
-            'building_width' => 'required',
-            'area_width' => 'required',
-            'garage' => 'required',
-            'price' => 'required',
-            'description' => 'required',
+            'whatsapp' => 'required',
+            'instagram' => 'required',
+            'facebook' => 'required',
+            'photo_path' => 'image|file|max:1024',
             'agent_id' => 'required',
-            'owner_name' => 'required',
-            'owner_phone' => 'required',
-            'status' => 'required',
+            'status' => 'required'
         ]);
+
+        if($validateData['photo_path']){
+            $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+        }
 
         //if( is_numeric( $data['price'] ) ) {
             $validateData['price']= str_replace( ',', '', $validateData['price']);
@@ -98,6 +98,14 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+        return view('admin.listing.show',[
+            "title" => "listing",
+            'listing' => $listing,            
+            "agents" => Agent::all(),
+            "category_listings" => CategoryListing::all()
+
+                           
+        ]);
     }
 
     /**
@@ -112,7 +120,8 @@ class ListingController extends Controller
         return view('admin.listing.edit',[
             "title" => "listing",
             "agents" => Agent::all(),
-            "Categories" => CategoryListing::all()
+            "category_listings" => CategoryListing::all(),
+            'listing' => $listing
         ]);
     }
 
@@ -126,6 +135,42 @@ class ListingController extends Controller
     public function update(UpdateListingRequest $request, Listing $listing)
     {
         //
+        $rules = [
+            'title' => 'required|max:255',
+            'slug' => 'required',
+            'address' => 'required',
+            'categoryListing_id' => 'required',
+            'bedroom' => 'required',
+            'bathroom' => 'required',
+            'type' => 'required',
+            'building_width' => 'required',
+            'area_width' => 'required',
+            'garage' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'photo_path' => 'image|file|max:1024',
+            'agent_id' => 'required',
+            'owner_name' => 'required',
+            'owner_phone' => 'required',
+            'status' => 'required',
+            'buyer_agent_id' => 'max:255'
+        ];
+
+        if($request->slug_edit != $listing->slug){
+            $rules['slug'] = 'required|unique:articles';
+        }
+
+        if($request->status != "Terjual"){
+            $request['buyer_agent_id'] = '';
+        }
+
+        $validateData = $request->validate($rules);
+
+        //return ddd($listing);
+
+        Listing::where('id', $listing->id)
+        ->update($validateData);
+        return redirect('/dashboard/listing')->with('success','Data Sukses Dirubah');
     }
 
     /**
@@ -137,7 +182,7 @@ class ListingController extends Controller
     public function destroy(Listing $listing)
     {
         Listing::destroy($listing->id);
-        return redirect('/dashboard/listing');//.with('success','Article Sukses Ditambahkan');
+        return redirect('/dashboard/listing');//.with('success','Data Sukses Dihapus');
    
     }
 }
