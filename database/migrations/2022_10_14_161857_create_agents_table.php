@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('sex');
             $table->string('email')->Unique();
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable();
             $table->string('address');
             $table->string('whatsapp');
             $table->string('instagram');

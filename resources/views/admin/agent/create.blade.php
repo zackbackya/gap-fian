@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/">
+        <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group row">
@@ -109,8 +109,8 @@
                 <div class="col-sm-10">
                     <div class="form-group">
                         <select class="custom-select" id="status" name="status"  required>
-                            <option value="T" selected>Aktif</option>
-                            <option value="F">Tidak Aktif</option>                                 
+                            <option value="Aktif" selected>Aktif</option>
+                            <option value="Tidak Aktif">Tidak Aktif</option>                                 
                         </select>
                       </div>
                 </div>

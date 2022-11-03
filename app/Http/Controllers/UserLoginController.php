@@ -80,6 +80,12 @@ class UserLoginController extends Controller
     public function show(UserLogin $userLogin)
     {
         //
+        return view('admin.user.edit',[
+            "title" => "user",
+            'userLogin' => $userLogin,
+            'agents' => Agent::all()
+            
+        ]);
     }
 
     /**

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agent;
-use App\Http\Requests\StoreAgentRequest;
 use App\Http\Requests\UpdateAgentRequest;
-
+use Illuminate\Http\Request;
+use Illuminate\Http\Request as HttpRequest;
 class AgentController extends Controller
 {
     /**
@@ -41,32 +41,30 @@ class AgentController extends Controller
      * @param  \App\Http\Requests\StoreAgentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAgentRequest $request)
+    public function store(Request $request)
     {
         //
         $validated = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required',
+            'nik' => 'required|max:255',
+            'name' => 'required',
+            'sex' => 'required',
+            'email' => 'required',
+            //'birthdate' => 'required',
             'address' => 'required',
-            'categoryListing_id' => 'required',
-            'bedroom' => 'required',
-            'bathroom' => 'required',
-            'type' => 'required',
-            'building_width' => 'required',
-            'area_width' => 'required',
-            'garage' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'photo_path' => 'image|file|max:1024',
-            'agent_id' => 'required',
-            'owner_name' => 'required',
-            'owner_phone' => 'required',
-            'status' => 'required',
+            'whatsapp' => 'required',
+            'instagram' => 'required',
+            'facebook' => 'required',
+            'photo_path' => 'image|file|max:512',
+            'status' => 'required'
         ]);
+
+        //ddd($validated);
 
         if($validated['photo_path']){
             $validated['photo_path'] = $request->file('photo_path')->store('uploaded_images');
         }
+
+
         Agent::create($validated);
         return redirect('/dashboard/agents')->with('success','Data Sukses Ditambahkan');
 
@@ -82,7 +80,7 @@ class AgentController extends Controller
     {
         //
         return view('admin.agent.show',[
-            "title" => "agent",
+            "title" => "agents",
             'agent' => $agent
                            
         ]);
@@ -115,23 +113,17 @@ class AgentController extends Controller
     {
         //
         $rules = [
-            'title' => 'required|max:255',
-            'slug' => 'required',
+            'nik' => 'required|max:255',
+            'name' => 'required',
+            'sex' => 'required',
+            'email' => 'required',
+            //'birthdate' => 'required',
             'address' => 'required',
-            'categoryListing_id' => 'required',
-            'bedroom' => 'required',
-            'bathroom' => 'required',
-            'type' => 'required',
-            'building_width' => 'required',
-            'area_width' => 'required',
-            'garage' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'photo_path' => 'image|file|max:1024',
-            'agent_id' => 'required',
-            'owner_name' => 'required',
-            'owner_phone' => 'required',
-            'status' => 'required',
+            'whatsapp' => 'required',
+            'instagram' => 'required',
+            'facebook' => 'required',
+            'photo_path' => 'image|file|max:512',
+            'status' => 'required'
         ];
 
         

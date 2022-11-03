@@ -61,18 +61,23 @@ class ListingController extends Controller
     {
         
         $validateData = $request->validate([
-            'nik' => 'required|max:255',
-            'name' => 'required',
-            'sex' => 'required',
-            'email' => 'required',
-            'birthdate' => 'required',
+            'title' => 'required|max:255',
+            'slug' => 'required',
             'address' => 'required',
-            'whatsapp' => 'required',
-            'instagram' => 'required',
-            'facebook' => 'required',
-            'photo_path' => 'image|file|max:1024',
+            'categoryListing_id' => 'required',
+            'bedroom' => 'required',
+            'bathroom' => 'required',
+            'type' => 'required',
+            'building_width' => 'required',
+            'area_width' => 'required',
+            'garage' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'photo_path' => 'image|file|max:512',
             'agent_id' => 'required',
-            'status' => 'required'
+            'owner_name' => 'required',
+            'owner_phone' => 'required',
+            'status' => 'required',
         ]);
 
         if($validateData['photo_path']){

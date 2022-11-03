@@ -25,20 +25,20 @@
           <div class="col-12">
              <div class="card">
 
-              <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/{{ $agent->id }}">
+              <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/{{ $agent->id }}" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="card-body">
                   <div class="form-group row">
                       <label for="nik" class="col-sm-2 col-form-label">NIK</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nik" name="nik" value="{{ old('nik') }}" placeholder="NIK">
+                        <input type="text" class="form-control" id="nik" name="nik" value="{{ old('nik', $agent->nik) }}" placeholder="NIK">
                       </div>
                     </div>
                   <div class="form-group row">
                       <label for="name" class="col-sm-2 col-form-label">Nama</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Nama">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $agent->name) }}" placeholder="Nama">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -59,7 +59,7 @@
                     <div class="form-group row">
                       <label for="email" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Email">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $agent->email) }}" placeholder="Email">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -76,34 +76,34 @@
                     <div class="form-group row">
                       <label for="address" class="col-sm-2 col-form-label">Alamat</label>
                       <div class="col-sm-10">
-                          <textarea class="form-control" rows="3"  id="address" name="address" value="{{ old('address') }}" placeholder="Alamat"></textarea>
+                          <textarea class="form-control" rows="3"  id="address" name="address" value="" placeholder="Alamat">{{ old('address', $agent->address) }}</textarea>
                 
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="whatsapp" class="col-sm-2 col-form-label">NO Whatsapp</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="NO Handphone Whatsapp">
+                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{ old('whatsapp', $agent->whatsapp) }}" placeholder="NO Handphone Whatsapp">
                       </div>
                     </div>
                  
                   <div class="form-group row">
                     <label for="instagram" class="col-sm-2 col-form-label">Instagram</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="instagram" name="instagram" value="{{ old('instagram') }}" placeholder="www.instagram.com/username">
+                      <input type="text" class="form-control" id="instagram" name="instagram" value="{{ old('instagram', $agent->instagram) }}" placeholder="www.instagram.com/username">
                     </div>
                   </div>
                   <div class="form-group row">
                       <label for="facebook" class="col-sm-2 col-form-label">Facebook</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="facebook" name="facebook" value="{{ old('facebook') }}" placeholder="www.facebook.com/username">
+                        <input type="text" class="form-control" id="facebook" name="facebook" value="{{ old('facebook', $agent->facebook) }}" placeholder="www.facebook.com/username">
                       </div>
                     </div>
       
                     <div class="form-group row">
                       <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
-                          <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path') }}" name="photo_path" >
+                          <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path')}}" name="photo_path" >
                           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                     </div>
