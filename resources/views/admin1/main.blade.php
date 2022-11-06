@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.css')}}">
 
     <!-- Datepicker-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 
     <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.css')}}">
@@ -29,11 +33,77 @@
   <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('admin-template/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  <script>
+    $( function() {
+      $( "#datepicker" ).datepicker({
+        dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1950:2022"
+  
+      });
+    } );
+    </script>
+  
 
+
+   <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+<script src="{{ asset('admin-template/assets/plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('admin-template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{ asset('admin-template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('admin-template/assets/dist/js/adminlte.js')}}"></script>
+
+    <script src="{{ asset('admin-template/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
+    <!-- PAGE PLUGINS -->
+
+    <link rel="stylesheet" type="text/css" href="DataTables-1.12.1/css/dataTables.bootstrap4.min.css"/>
+<link rel="stylesheet" type="text/css" href="AutoFill-2.4.0/css/autoFill.bootstrap4.css"/>
+<link rel="stylesheet" type="text/css" href="Scroller-2.0.7/css/scroller.bootstrap4.min.css"/>
+ 
+<script type="text/javascript" src="{{ asset('DataTables/DataTables-1.12.1/js/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/DataTables-1.12.1/js/dataTables.bootstrap4.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/AutoFill-2.4.0/js/dataTables.autoFill.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/AutoFill-2.4.0/js/autoFill.bootstrap4.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/Scroller-2.0.7/js/dataTables.scroller.min.js')}}"></script>
+
+
+
+<script src="{{ asset('admin-template/assets/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('admin-template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- DataTables  & Plugins -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      "pageLength": 10
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+  });
+
+  $('#content').summernote();
+  $('#description').summernote();
+
+  </script>
+
+
+
+ 
   </head>
   <body
-    class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"
-  >
+    class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
       <!-- Preloader -->
       <div
@@ -41,7 +111,7 @@
       >
         <img
           class="animation__wobble"
-          src="{{ asset('admin-template/assets/dist/img/AdminLTELogo.png')}}"
+          src="{{ asset('admin-template/dist/img/AdminLTELogo.png')}}"
           alt="AdminLTELogo"
           height="60"
           width="60"
@@ -231,79 +301,8 @@
     <!-- ./wrapper -->
 
    
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ asset('admin-template/assets/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('admin-template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- overlayScrollbars -->
-    <script src="{{ asset('admin-template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('admin-template/assets/dist/js/adminlte.js')}}"></script>
-
-    <script src="{{ asset('admin-template/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
-
-    <!-- PAGE PLUGINS -->
-    <!-- jQuery Mapael -->
-    <script src="{{ asset('admin-template/assets/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-    <script src="{{ asset('admin-template/assets/plugins/raphael/raphael.min.js')}}"></script>
-    <script src="{{ asset('admin-template/assets/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-    <script src="{{ asset('admin-template/assets/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
-    <!-- ChartJS -->
-    <script src="{{ asset('admin-template/assets/plugins/chart.js/Chart.min.js')}}"></script>
-
-
-     <!-- date-range-picker -->
-<script src="{{ asset('admin-template/assets/datepicker/js/bootstrap-datepicker.js')}}"></script>
-<script src="{{ asset('admin-template/assets/datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-
-
-<script src="{{ asset('admin-template/assets/plugins/moment/moment.min.js')}}"></script>
-    <script src="{{ asset('admin-template/assets/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
-    
-    <!-- bootstrap color picker -->
-    <script src="{{ asset('admin-template/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('admin-template/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-    
-
-<script src="{{ asset('admin-template/assets/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('admin-template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-  <!-- DataTables  & Plugins -->
-<script src="{{ asset('admin-template/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/jszip/jszip.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('admin-template/assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-
-<script src="{{ asset('admin-template/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
-
-
+   
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-      "pageLength": 10
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-  });
-
-  $('#content').summernote();
-  $('#description').summernote();
-
-  
-
 $(function () {
         bsCustomFileInput.init();
       });
@@ -312,14 +311,6 @@ $(function () {
         var fileName = e.target.files[0].name;
         $('.custom-file-label').html(fileName);
     });
-  
-
-
-    $.fn.digits = function(){ 
-    return this.each(function(){ 
-        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
-    })
-}
 
 var el = document.querySelector('input.number');
 el.addEventListener('keyup', function (event) {
@@ -331,14 +322,43 @@ el.addEventListener('keyup', function (event) {
 
 
 
+</script>
+
+<script>
+
+const title = document.querySelector('#title');
+const slug = document.querySelector('#slug');
+
+
+  title.addEventListener('change', function() {
+    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
+    .then(response => response.json())
+    .then(data => slug.value = data.slug)
+  });
+
+
+        function previewImage(){       
+const image = document.querySelector('#photo_path');
+const imgPreview = document.querySelector('.img-preview');
+
+imgPreview.style.display = 'block';
+
+const oFReader = new FileReader();
+oFReader.readAsDataURL(image.files[0]);
+
+oFReader.onload = funtion(oFREvent) {
+  imgPreview.src = oFREvent.target.result;
+}
+        }
+
+
 
 </script>
 
     <!-- AdminLTE for demo purposes -->
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('admin-template/assets/dist/js/pages/dashboard2.js')}}"></script>
-
+    
     
   </body>
 </html>

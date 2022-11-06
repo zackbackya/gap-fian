@@ -6,6 +6,8 @@ use App\Models\Agent;
 use App\Http\Requests\UpdateAgentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Storage;
+
 class AgentController extends Controller
 {
     /**
@@ -49,7 +51,7 @@ class AgentController extends Controller
             'name' => 'required',
             'sex' => 'required',
             'email' => 'required',
-            //'birthdate' => 'required',
+            'birthdate' => 'required',
             'address' => 'required',
             'whatsapp' => 'required',
             'instagram' => 'required',
@@ -117,7 +119,7 @@ class AgentController extends Controller
             'name' => 'required',
             'sex' => 'required',
             'email' => 'required',
-            //'birthdate' => 'required',
+            'birthdate' => 'required',
             'address' => 'required',
             'whatsapp' => 'required',
             'instagram' => 'required',
@@ -127,8 +129,16 @@ class AgentController extends Controller
         ];
 
         
+       
 
-        $validateData = $request->validate($rules);
+         $validateData = $request->validate($rules);
+
+         if($validateData['photo_path']){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+        }
 
         //return dd($article);
 

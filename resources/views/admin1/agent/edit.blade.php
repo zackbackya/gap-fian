@@ -1,12 +1,4 @@
-@include('admin.layout.header')
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-<div class="wrapper">
-
- @include('admin.layout.navbar')
-
- @include('admin.layout.sidebar');
-
-
+@extends('admin.main')
 @section('container')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -73,23 +65,13 @@
                     <div class="form-group row">
                       <label for="birthdate" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                       <div class="col-sm-10">
-                        <div
-                              class="input-group date"
-                              id="birthdate"
-                              data-target-input="nearest"
-                            >
-                            <input class="form-control" id="date" name="birthdate" placeholder="Tanggal Lahir" type="text"  value="{{ old('birthdate', $agent->birthdate) }}"/>
-                              <div
-                                class="input-group-append"
-                                data-target="#birthdate"
-                                data-toggle="datetimepicker"
-                              >
-                                <div class="input-group-text">
-                                  <i class="fa fa-calendar"></i>
-                                </div>
-                              </div>
-                            </div>
+                        <div class="input-group date" id="birthdate" name="birthdate" data-target-input="nearest">
+                          <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                          <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                           </div>
+                      </div>
+                      </div>
                     </div>
                     <div class="form-group row">
                       <label for="address" class="col-sm-2 col-form-label">Alamat</label>
@@ -121,32 +103,18 @@
                     <div class="form-group row">
                       <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
-                          <input type="hidden" name="old_photo_path" id="old_photo_path" value="{{ $agent->photo_path }}"> 
-                          <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path')}}" name="photo_path" onchange="readURL(this);">
+                          <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path')}}" name="photo_path" >
                           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                          
-
-                          @if($agent->photo_path)
-                          <img class="img-preview img-fluid mb-3 col-sm-5" style="padding: 1%;"
-                          src="{{ asset('storage/' . $agent->photo_path )}}"
-                          alt="{{ $agent->title }}"/>
-                          @else
-                          <img class="img-preview img-fluid mb-3 col-sm-5" style="padding: 1%;"/>
-                          @endif
-
-                        
                         </div>
                     </div>
-
-                    
 
                     <div class="form-group row">
                       <label for="status" class="col-sm-2 col-form-label">Status</label>
                       <div class="col-sm-10">
                           <div class="form-group">
                               <select class="custom-select" id="status" name="status"  required>
-                                  <option value="Aktif" selected>Aktif</option>
-                                  <option value="Tidak Aktif">Tidak Aktif</option>                                 
+                                  <option value="T" selected>Aktif</option>
+                                  <option value="F">Tidak Aktif</option>                                 
                               </select>
                             </div>
                       </div>
@@ -202,10 +170,18 @@
   </div>
   <!-- /.modal -->
 
-  @include('admin.layout.footer')
-</div>
-<!-- ./wrapper -->
-</body>
-</html>
+  <script>
 
-@include('admin.layout.script')
+  const title = document.querySelector('#title');
+  const slug = document.querySelector('#slug');
+
+
+  title.addEventListener('change', function() {
+    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
+    .then(response => response.json())
+    .then(data => slug.value = data.slug)
+  });
+
+ </script>
+
+  @endsection

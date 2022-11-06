@@ -1,6 +1,13 @@
-@extends('admin.main')
-@section('container')
-<div class="content-wrapper">
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -103,26 +110,18 @@
     </section>
     <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 
-  
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-  
-
-
-
-  </script>
-
-  @endsection
+@include('admin.layout.script')

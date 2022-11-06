@@ -1,13 +1,6 @@
-@include('admin.layout.header')
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-<div class="wrapper">
-
- @include('admin.layout.navbar')
-
- @include('admin.layout.sidebar');
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+@extends('admin.main')
+@section('container')
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -45,8 +38,8 @@
                         <select class="custom-select" id="sex" name="sex">
 
                           
-                          <option value="Laki-laki">Laki-laki</option>
-                          <option value="Perempuan">Perempuan</option>
+                          <option value="Pria">Pria</option>
+                          <option value="Wanita">Wanita</option>
                           
                           
                         </select>
@@ -62,25 +55,15 @@
               <div class="form-group row">
                 <label for="birthdate" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                 <div class="col-sm-10">
-                  <div
-                        class="input-group date"
-                        id="birthdate"
-                        data-target-input="nearest"
-                      >
-                      <input class="form-control" id="date" name="birthdate" placeholder="Tanggal Lahir" type="text" required/>
-                        <div
-                          class="input-group-append"
-                          data-target="#birthdate"
-                          data-toggle="datetimepicker"
-                        >
-                          <div class="input-group-text">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="input-group date">
+                    
+                      <input type="text" class="form-control" id="datepicker">
+                 
+                
+                </div>
+                </div>
+                
               </div>
-
               <div class="form-group row">
                 <label for="address" class="col-sm-2 col-form-label">Alamat</label>
                 <div class="col-sm-10">
@@ -112,15 +95,15 @@
                 <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
                 
                   <div class="col-sm-10">
-                    <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path') }}" name="photo_path" onchange="readURL(this);">
+                    <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path') }}" name="photo_path" onchange="previewImage()">
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                    <img class="img-preview img-fluid mb-3 col-sm-5" style="padding: 1%;">  
                   </div>
+                  <div class="col-sm-10">
+                  <img class="img-preview img-fluid">  
+                  </div>
+                  
                 
               </div>
-
-       
-
 
               <div class="form-group row">
                 <label for="status" class="col-sm-2 col-form-label">Status</label>
@@ -155,23 +138,16 @@
   </div>
 
   <!-- /.modal -->
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  @include('admin.layout.footer')
-</div>
-<!-- ./wrapper -->
-
-</body>
-</html>
-
-@include('admin.layout.script')
 
 
 
+<script type="text/javascript">
+  
 
+  
+
+</script>
+
+@endsection
+
+ 
