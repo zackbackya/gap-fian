@@ -1,4 +1,12 @@
-@extends('admin.main')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
+
+
 @section('container')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -6,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>article</h1>
+            <h1>Kategori Listing</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">article</li>
+              <li class="breadcrumb-item active">Kategori Listing</li>
             </ol>
           </div>
         </div>
@@ -39,8 +47,6 @@
                   <thead>
                   <tr>
                     <th>No.</th>
-                    <th>Judul</th>
-                    <th>Sumber</th>
                     <th>Kategori</th>
                     <th>Tanggal Ditambahkan</th>
                     <th>Action</th>
@@ -48,24 +54,18 @@
                   </thead>
                   <tbody>
                    
-                    @foreach ($articles as $article)
+                    @foreach ($category_listings as $category)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $article->title }}</td>
-                      <td>{{ $article->source }}</td>
-                      <td>{{ $article->category_name }}</td>
-                      <td>{{ $article->created_at }}</td>
+                      <td>{{ $category->category_name }}</td>
+                      <td>{{ $category->created_at }}</td>
                       <td class="project-actions text-center">
-                        <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $article->slug }}">
-                          <i class="fas fa-eye">
-                          </i>
-                          Show
-                      </a>
-                      <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $article->slug }}/edit">
+                        
+                      <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $category->id  }}/edit">
                               <i class="fas fa-pencil-alt">
                               </i> Edit
                             </a>
-                          <form method="post" action="/dashboard/{{ $title }}/{{ $article->slug }}" class="d-inline">
+                          <form method="post" action="/dashboard/{{ $title }}/{{ $category->id  }}" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="btn btn-danger btn-sm" onClick="return confirm('Apakah Yakin Data Akan dihapus ?')">
@@ -106,23 +106,10 @@
 
 
   
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-  
-
-
-
-  </script>
-
-  @endsection
+@include('admin.layout.script')

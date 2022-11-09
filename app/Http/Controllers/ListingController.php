@@ -6,9 +6,11 @@ use App\Models\Listing;
 use App\Models\CategoryListing;
 use App\Models\Agent;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class ListingController extends Controller
@@ -153,7 +155,7 @@ class ListingController extends Controller
             'garage' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'photo_path' => 'image|file|max:1024',
+            'photo_path' => 'image|file|max:512',
             'agent_id' => 'required',
             'owner_name' => 'required',
             'owner_phone' => 'required',
@@ -170,6 +172,13 @@ class ListingController extends Controller
         }
 
         $validateData = $request->validate($rules);
+
+        if($validateData['photo_path']){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+        }
 
         //return ddd($listing);
 
@@ -189,5 +198,12 @@ class ListingController extends Controller
         Listing::destroy($listing->id);
         return redirect('/dashboard/listing');//.with('success','Data Sukses Dihapus');
    
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Listing::class, 'slug', $request->listing_judul);
+
+        return response()->json(['slug' => $slug]);
     }
 }

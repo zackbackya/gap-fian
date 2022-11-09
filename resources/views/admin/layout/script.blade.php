@@ -17,6 +17,7 @@
 <!-- ChartJS -->
 <script src="{{ asset('admin-template/plugins/chart.js/Chart.min.js') }}"></script>
 
+
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('admin-template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin-template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -30,6 +31,9 @@
 <script src="{{ asset('admin-template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('admin-template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('admin-template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+<!-- Summernote -->
+<script src="{{ asset('admin-template/plugins/summernote/summernote-bs4.min.js') }}"></script>
 
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -78,6 +82,11 @@ const slug = document.querySelector('#slug');
       date_input.datepicker(options);
     })
   </script>
+
+  <script>
+      $('#content').summernote();
+  $('#description').summernote();
+    </script>
 
 
   <script>

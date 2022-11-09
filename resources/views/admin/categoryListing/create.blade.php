@@ -1,4 +1,12 @@
-@extends('admin.main')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
+
+
 @section('container')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -6,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah Kategori Article</h1>
+            <h1>Tambah Kategori Listing</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Kategori Article</li>
+              <li class="breadcrumb-item active">Kategori Listing</li>
             </ol>
           </div>
         </div>
@@ -74,29 +82,10 @@
 
   
   <!-- /.modal -->
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-  const title_edit = document.querySelector('#title_edit');
-  const slug_edit= document.querySelector('#slug_edit');
-
-
-  title_edit.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title_edit.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-  </script>
-
-  @endsection
+@include('admin.layout.script')

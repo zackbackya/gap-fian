@@ -1,12 +1,17 @@
-@extends('admin.main')
-@section('container')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Show Listing</h1>
+            <h1>Edit Listing</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -23,7 +28,7 @@
             <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Judul</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="title" name="title" value="{{ $listing->title }}" placeholder="Judul" readonly>
+                  <input type="text" class="form-control" id="title" name="title" value="{{ $listing->title }}" placeholder="Judul">
                 </div>
               </div>
               <div class="form-group row">
@@ -35,7 +40,7 @@
               <div class="form-group row">
                 <label for="address" class="col-sm-2 col-form-label">Alamat</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3"  id="address" name="address"  placeholder="Alamat" readonly>{{ $listing->address }}</textarea>
+                    <textarea class="form-control" rows="3"  id="address" name="address"  placeholder="Alamat">{{ $listing->address }}</textarea>
                 </div>
               </div>
               <div class="form-group row">
@@ -59,26 +64,26 @@
               <div class="form-group row">
                 <label for="bedroom" class="col-sm-2 col-form-label">Jumlah Kamar Tidur</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="bedroom" name="bedroom" value="{{ $listing->bedroom }}" placeholder="Jumlah Kamar Tidur" readonly>
+                  <input type="number" class="form-control" id="bedroom" name="bedroom" value="{{ $listing->bedroom }}" placeholder="Jumlah Kamar Tidur">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="bathroom" class="col-sm-2 col-form-label">Jumlah Kamar Mandi</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="bathroom" name="bathroom" value="{{ $listing->bathroom }}" placeholder="Jumlah Kamar Mandi" readonly>
+                  <input type="number" class="form-control" id="bathroom" name="bathroom" value="{{ $listing->bathroom }}" placeholder="Jumlah Kamar Mandi">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="type" class="col-sm-2 col-form-label">Type</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="type" name="type" value="{{ $listing->type }}" placeholder="Type Contoh 36/72" readonly>
+                  <input type="text" class="form-control" id="type" name="type" value="{{ $listing->type }}" placeholder="Type Contoh 36/72">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="building_width" class="col-sm-2 col-form-label">Luas Bangunan M<sup>2</sup></label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="building_width" name="building_width" value="{{ $listing->building_width }}" placeholder="Luas Bangunan Dalam Meter Persegi Tulis Angkanya saja contoh 45" readonly>
+                  <input type="number" class="form-control" id="building_width" name="building_width" value="{{ $listing->building_width }}" placeholder="Luas Bangunan Dalam Meter Persegi Tulis Angkanya saja contoh 45">
               
                 </div>
               
@@ -86,14 +91,14 @@
               <div class="form-group row">
                 <label for="area_width" class="col-sm-2 col-form-label">Luas Tanah M<sup>2</sup></label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="area_width" name="area_width" value="{{ $listing->area_width }}" placeholder="Luas Tanah Dalam Meter Persegi Tulis Angkanya saja contoh 900" readonly>
+                  <input type="number" class="form-control" id="area_width" name="area_width" value="{{ $listing->area_width }}" placeholder="Luas Tanah Dalam Meter Persegi Tulis Angkanya saja contoh 900">
                 </div>
                 
               </div>
               <div class="form-group row">
                 <label for="garage" class="col-sm-2 col-form-label">Garasi</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="garage" name="garage" value="{{ $listing->garage }}" placeholder="Garasi" readonly>
+                  <input type="number" class="form-control" id="garage" name="garage" value="{{ $listing->garage }}" placeholder="Garasi">
                 </div>
               </div>
               <div class="form-group row">
@@ -102,7 +107,7 @@
                  
                   
                 <div class="col-sm-4">
-                  <input class="number form-control" id="price" name="price" value="{{ $listing->price }}" placeholder="Tulis Harga Angkanya saja Contoh : 1000000 " readonly>
+                  <input class="number form-control" id="price" name="price" value="{{ $listing->price }}" placeholder="Tulis Harga Angkanya saja Contoh : 1000000 ">
                 </div>
                 
               </div>
@@ -110,7 +115,7 @@
                 <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
                 <div class="col-sm-10">
                   <div class="card-body">
-                    <textarea id="description" name="description" readonly>
+                    <textarea id="description" name="description">
                       {{ $listing->description }}
                                                 </textarea>
                   </div>
@@ -120,20 +125,30 @@
               
               <div class="form-group row">
                 <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
-                
-                <div style="max-height: 300px; overflow:hidden">
-                  <img
-                    src="{{ asset('storage/' . $listing->photo_path )}}"
-                    alt="{{ $listing->title }}"
-                  />
-                </div>
+                  <div class="col-sm-10">
+                    <input type="hidden" name="old_photo_path" id="old_photo_path" value="{{ $article->photo_path }}"> 
+                    <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path')}}" name="photo_path" onchange="readURL(this);">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                    
+
+                    @if($article->photo_path)
+                    <img class="img-preview img-fluid mb-3 col-sm-5" style="padding: 1%;"
+                    src="{{ asset('storage/' . $article->photo_path )}}"
+                    alt="{{ $article->title }}"/>
+                    @else
+                    <img class="img-preview img-fluid mb-3 col-sm-5" style="padding: 1%;"/>
+                    @endif
+
+                  
+                  </div>
               </div>
+
 
               <div class="form-group row">
                 <label for="agent_id" class="col-sm-2 col-form-label">Agent</label>
                 <div class="col-sm-10">
                     <div class="form-group">
-                        <select class="custom-select" id="agent_id" name="agent_id" readonly>
+                        <select class="custom-select" id="agent_id" name="agent_id">
                           @foreach ($agents as $agent)
                           @if(old('agent_id', $listing->agent_id) == $agent->id)
                           <option value="{{ $agent->id }}" selected>{{ $agent->name }}</option>
@@ -151,13 +166,13 @@
               <div class="form-group row">
                 <label for="owner_name" class="col-sm-2 col-form-label">Pemilik</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="owner_name" name="owner_name" value="{{ $listing->owner_name }}" placeholder="Pemilik" readonly>
+                  <input type="text" class="form-control" id="owner_name" name="owner_name" value="{{ $listing->owner_name }}" placeholder="Pemilik">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="owner_phone" class="col-sm-2 col-form-label"> No Telpon Pemilik</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="owner_phone" name="owner_phone" placeholder="No Telpon Pemilik" value="{{ $listing->owner_phone }}" readonly>
+                  <input type="text" class="form-control" id="owner_phone" name="owner_phone" placeholder="No Telpon Pemilik" value="{{ $listing->owner_phone }}">
                 </div>
               </div>
 
@@ -165,7 +180,7 @@
                 <label for="status" class="col-sm-2 col-form-label">Status Listing</label>
                 <div class="col-sm-10">
                     <div class="form-group">
-                        <select class="custom-select" id="status" name="status"  readonly>
+                        <select class="custom-select" id="status" name="status"  required>
 
                           @if(old('status', $listing->status) == "Terjual")
                           <option value="Terjual" selected>Terjual</option>
@@ -186,7 +201,7 @@
                 <label for="buyer_agent_id" class="col-sm-2 col-form-label">Agent Pemilik Buyer</label>
                 <div class="col-sm-10">
                     <div class="form-group">
-                        <select class="custom-select" id="buyer_agent_id" name="buyer_agent_id" readonly>
+                        <select class="custom-select" id="buyer_agent_id" name="buyer_agent_id">
                           @foreach ($agents as $agent)
                           @if(old('agent_id', $listing->agent_id) == $agent->id)
                           <option value="{{ $agent->id }}" selected>{{ $agent->name }}</option>
@@ -206,25 +221,13 @@
             
           </div>
           <!-- /.card-body -->
-          <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/">
-            <i class="fas fa-arrow-left">
-            </i>
-            Kembali
-        </a>
-        <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $listing->slug }}/edit">
-                <i class="fas fa-pencil-alt">
-                </i> Edit
-              </a>
-            <form method="post" action="/dashboard/{{ $title }}/{{ $listing->slug }}" class="d-inline">
-              @method('delete')
-              @csrf
-              <button class="btn btn-danger btn-sm" onClick="return confirm('Apakah Yakin Data Akan dihapus ?')">
-                <i class="fas fa-trash">
-                </i>
-                Delete
-            </button>
-    
-            </form>
+          <div class="modal-footer justify-content-between">
+            <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/">
+            </i> Cancel
+          </a>
+          
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
           
         </form>
 
@@ -238,42 +241,10 @@
 
 
   
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
-  const status = document.querySelector('#status');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-
-  window.onload = function() {
-    if(status.value === "Terjual"){
-    document.getElementById('buyerAgentID').style.display = 'unset';
-  } else if(status.value === "Belum Terjual"){
-    document.getElementById('buyerAgentID').style.display = 'none';
-  }
-
-};
-
-status.addEventListener('change', function() {
-  if(status.value === "Terjual"){
-    document.getElementById('buyerAgentID').style.display = 'unset';
-  } else if(status.value === "Belum Terjual"){
-    document.getElementById('buyerAgentID').style.display = 'none';
-  }
-
-  });
-
-
-  </script>
-
-  
-
-  @endsection
+@include('admin.layout.script')

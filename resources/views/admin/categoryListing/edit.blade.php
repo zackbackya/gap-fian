@@ -1,4 +1,12 @@
-@extends('admin.main')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
+
+
 @section('container')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,14 +33,14 @@
           <div class="col-12">
              <div class="card">
 
-              <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/{{ $categoryArticle->id }}">
+              <form class="form-horizontal" method="post" action="/dashboard/{{ $title }}/{{ $categoryListing->id }}">
                 @method('put')
                 @csrf
                 <div class="card-body">
                   <div class="form-group row">
                       <label for="category_name" class="col-sm-2 col-form-label">Nama Kategori</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="category_name" name="category_name" value="{{ $categoryArticle->category_name }}" placeholder="Judul">
+                        <input type="text" class="form-control" id="category_name" name="category_name" value="{{ $categoryListing->category_name }}" placeholder="Judul">
                       </div>
                     </div>
                     
@@ -86,19 +94,10 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
- </script>
-
-  @endsection
+@include('admin.layout.script')

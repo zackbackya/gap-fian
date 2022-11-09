@@ -7,6 +7,7 @@ use App\Models\CategoryArticle;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -65,7 +66,7 @@ class ArticleController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required',
-            'photo_path' => 'image|file|max:1024',
+            'photo_path' => 'image|file|max:512',
             'source' => 'required',
             'category_id' => 'required',
             'content' => 'required',
@@ -125,6 +126,7 @@ class ArticleController extends Controller
             'title' => 'required|max:255',
             'source' => 'required',
             'category_id' => 'required',
+            'photo_path' => 'image|file|max:512',
             'content' => 'required',
             'status' => 'required'
         ];
@@ -134,6 +136,13 @@ class ArticleController extends Controller
         }
 
         $validateData = $request->validate($rules);
+
+        if($validateData['photo_path']){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+        }
 
         //return dd($article);
 

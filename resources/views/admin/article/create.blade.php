@@ -1,4 +1,12 @@
-@extends('admin.main')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
+
+
 @section('container')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -31,16 +39,20 @@
                   <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{ old('slug') }}" readonly>
                 </div>
               </div>
+              
               <div class="form-group row">
                 <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
                 
-                  <div class="col-sm-10">
-                    <input type="file" class="custom-file-input" id="photo_path" name="photo_path" onchange="previewImage()">
-                    <label class="custom-file-label" for="photo_path"></label>
-                  </div>
-
-                
-                    <img class="img-preview img-fluid" src="/publi/">
+                <div class="col-sm-10">
+                  <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path') }}" name="photo_path" onchange="readURL(this);" @error('photo_path') is-invalid @enderror required>
+                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  @error('photo_path')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+                  <img class="img-preview img-fluid mb-3 col-sm-5" style="padding: 1%;">  
+                </div>
                 
               </div>
 
@@ -143,27 +155,10 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  
-  <!-- /.modal -->
-
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-
-
-
-
-
-  </script>
-
-  @endsection
+@include('admin.layout.script')

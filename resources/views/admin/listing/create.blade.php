@@ -1,5 +1,10 @@
-@extends('admin.main')
-@section('container')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -120,10 +125,17 @@
               <div class="form-group row">
                 <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
                 
-                  <div class="col-sm-10">
-                    <input type="file" class="custom-file-input" id="photo_path" name="photo_path" >
-                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                  </div>
+                <div class="col-sm-10">
+                  <input type="file" class="custom-file-input" id="photo_path" value="{{ old('photo_path') }}" name="photo_path" onchange="readURL(this);" @error('photo_path') is-invalid @enderror required>
+                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  @error('photo_path')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+                  <img class="img-preview img-fluid mb-3 col-sm-5" style="padding: 1%;">  
+                </div>
+                
               </div>
 
               <div class="form-group row">
@@ -194,22 +206,10 @@
 
 
   
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-
-  
-
-  </script>
-
-  @endsection
+@include('admin.layout.script')

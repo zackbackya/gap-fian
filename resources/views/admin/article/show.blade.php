@@ -1,4 +1,12 @@
-@extends('admin.main')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
+
+
 @section('container')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -83,4 +91,10 @@
   </div>
   <!-- /.content-wrapper -->
   
-  @endsection
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
+
+@include('admin.layout.script')

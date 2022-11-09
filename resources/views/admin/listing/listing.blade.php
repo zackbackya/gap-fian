@@ -1,17 +1,22 @@
-@extends('admin.main')
-@section('container')
+@include('admin.layout.header')
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ @include('admin.layout.navbar')
+
+ @include('admin.layout.sidebar');
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Agent</h1>
+            <h1>Listing</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Agent</li>
+              <li class="breadcrumb-item active">Listing</li>
             </ol>
           </div>
         </div>
@@ -39,33 +44,37 @@
                   <thead>
                   <tr>
                     <th>No.</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Jenis Kelamin</th>
+                    <th>Judul</th>
+                    <th>Alamat</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Agent</th>
                     <th>Tanggal Ditambahkan</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                    
-                    @foreach ($agents as $agent)
+                    @foreach ($listings as $listing)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $agent->name }}</td>
-                      <td>{{ $agent->email }}</td>
-                      <td>{{ $agent->sex }}</td>
-                      <td>{{ $agent->created_at }}</td>
+                      <td>{{ $listing->title }}</td>
+                      <td>{{ $listing->address }}</td>
+                      <td>{{ $listing->category_name }}</td>
+                      <td>{{ $listing->price }}</td>
+                      <td>{{ $listing->name }}</td>
+                      <td>{{ $listing->created_at }}</td>
                       <td class="project-actions text-center">
-                        <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $agent->id }}">
+                        <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $listing->slug }}">
                           <i class="fas fa-eye">
                           </i>
                           Show
                       </a>
-                      <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $agent->id }}/edit">
+                      <a class="btn btn-info btn-sm" href="/dashboard/{{ $title }}/{{ $listing->slug }}/edit">
                               <i class="fas fa-pencil-alt">
                               </i> Edit
                             </a>
-                          <form method="post" action="/dashboard/{{ $title }}/{{ $agent->id }}" class="d-inline">
+                          <form method="post" action="/dashboard/{{ $title }}/{{ $listing->slug }}" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="btn btn-danger btn-sm" onClick="return confirm('Apakah Yakin Data Akan dihapus ?')">
@@ -106,23 +115,10 @@
 
 
   
+  @include('admin.layout.footer')
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
 
-  <script>
-
-  const title = document.querySelector('#title');
-  const slug = docu   ment.querySelector('#slug');
-
-
-  title.addEventListener('change', function() {
-    fetch('/dashboard/article/checkSlug?article_judul=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
-
-  
-
-
-
-  </script>
-
-  @endsection
+@include('admin.layout.script')
