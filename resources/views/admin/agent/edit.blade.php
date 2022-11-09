@@ -101,7 +101,7 @@
                     <div class="form-group row">
                       <label for="whatsapp" class="col-sm-2 col-form-label">NO Whatsapp</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{ old('whatsapp', $agent->whatsapp) }}" placeholder="NO Handphone Whatsapp">
+                        <input type="number" class="form-control" id="whatsapp" name="whatsapp" value="{{ old('whatsapp', $agent->whatsapp) }}" placeholder="NO Handphone Whatsapp">
                       </div>
                     </div>
                  

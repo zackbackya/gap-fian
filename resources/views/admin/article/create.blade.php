@@ -30,13 +30,13 @@
             <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Judul</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Judul">
+                  <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Judul" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="slug" class="col-sm-2 col-form-label">Slug</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{ old('slug') }}" readonly>
+                  <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{ old('slug') }}" readonly required>
                 </div>
               </div>
               
@@ -62,7 +62,7 @@
                 <label for="content" class="col-sm-2 col-form-label">Content</label>
                 <div class="col-sm-10">
                   <div class="card-body">
-                    <textarea id="content" name="content">
+                    <textarea id="content" name="content" required>
                      {{ old('content') }}
                                                 </textarea>
                   </div>
@@ -75,7 +75,7 @@
               <div class="form-group row">
                 <label for="source" class="col-sm-2 col-form-label">Sumber</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="source" name="source" value="{{ old('source') }}" placeholder="Sumber">
+                  <input type="text" class="form-control" id="source" name="source" value="{{ old('source') }}" placeholder="Sumber" required>
                 </div>
               </div>
 

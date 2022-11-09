@@ -15,8 +15,5 @@ class UserLogin extends Authenticatable
         return 'username';
     }
 
-    public function Agent()
-{
-        return $this->belongsTo('Agents');
-}
+    
 }

@@ -14,7 +14,11 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
+
+      <!--
+        
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        
         <div class="image">
           <img
             src="{{ asset('admin-template/dist/img/user2-160x160.jpg')}}"
@@ -23,9 +27,11 @@
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ auth()->user()->access;}}</a>
+          <a href="#" class="d-block">{{ auth()->user()->username  /*$agent = Agents::where('id','=',auth()->user()->agent_id->get()->first();*/  }}</a>
         </div>
+      
       </div>
+      -->
 
       <!-- SidebarSearch Form -->
 

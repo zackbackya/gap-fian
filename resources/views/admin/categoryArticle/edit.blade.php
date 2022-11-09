@@ -40,7 +40,7 @@
                   <div class="form-group row">
                       <label for="category_name" class="col-sm-2 col-form-label">Nama Kategori</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="category_name" name="category_name" value="{{ $categoryArticle->category_name }}" placeholder="Judul">
+                        <input type="text" class="form-control" id="category_name" name="category_name" value="{{ $categoryArticle->category_name }}" placeholder="Judul" required>
                       </div>
                     </div>
                     

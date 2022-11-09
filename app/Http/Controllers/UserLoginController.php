@@ -25,6 +25,8 @@ class UserLoginController extends Controller
         ->select('user_logins.*', 'agents.name')
         ->get();
 
+        //ddd($user);
+
         return view('admin.user.user',[
             "title" => "user",
             'users' => $user   
@@ -58,9 +60,9 @@ class UserLoginController extends Controller
         
         $validateData = $request->validate([
             'agent_id' => 'required|max:255',
-            'username' => 'required|min:5|max:255|unique:user_logins',
+            'username' => 'required|min:2|max:255|unique:user_logins',
             'access' => 'required',
-            'password' => 'required|max:255|min:2'
+            'password' => 'required|max:255'
 
         ]);
         
@@ -141,6 +143,7 @@ class UserLoginController extends Controller
     public function destroy(UserLogin $userLogin)
     {
         //
+        
         UserLogin::destroy($userLogin->id);
         return redirect('/dashboard/user');//.with('success','Article Sukses Ditambahkan');
     }

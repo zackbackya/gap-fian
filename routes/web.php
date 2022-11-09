@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryListingController;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\ListingController;
 use App\Models\Category;
 use App\Models\CategoryArticle;
@@ -73,12 +74,6 @@ Route::get('/contact', function () {
 //route for backend page
 
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard',[
-        "title" => "dashboard"
-    ]);
-});
-
 Route::get('/dashboard/report', function () {
     return view('admin.report',[
         "title" => "report"
@@ -104,6 +99,7 @@ Route::resource('/dashboard/listing',ListingController::class);
 Route::resource('/dashboard/agents',AgentController::class);
 Route::resource('/dashboard/article',ArticleController::class);
 Route::resource('/dashboard/user',UserLoginController::class);
+Route::resource('/dashboard',Dashboard::class);
 
 Route::resource('/dashboard/categoryListing',CategoryListingController::class);
 Route::resource('/dashboard/categoryArticle',CategoryArticleController::class);

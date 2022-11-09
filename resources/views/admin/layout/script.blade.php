@@ -46,7 +46,6 @@
 <!-- bs-custom-file-input -->
 <script src="{{ asset('admin-template/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
-@push('slugArticle')
 <script>
 const title = document.querySelector('#title');
 const slug = document.querySelector('#slug');
@@ -58,7 +57,6 @@ const slug = document.querySelector('#slug');
     .then(data => slug.value = data.slug)
   });
 </script>
-@endpush
 
 
 <script>

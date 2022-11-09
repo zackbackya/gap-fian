@@ -9,9 +9,4 @@ class Agent extends Model
 {
     protected $guarded = ['id'];
     use HasFactory;
-
-    public function UserLogin()
-{
-        return $this->hasOne('UserLogin');
-}
 }

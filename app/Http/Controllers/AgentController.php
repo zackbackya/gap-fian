@@ -53,7 +53,7 @@ class AgentController extends Controller
             'email' => 'required',
             'birthdate' => 'required',
             'address' => 'required|min:10',
-            'whatsapp' => 'required|number|min:10',
+            'whatsapp' => 'required|min:10',
             'instagram' => 'required',
             'facebook' => 'required',
             'photo_path' => 'image|file|max:512',
@@ -121,7 +121,7 @@ class AgentController extends Controller
             'email' => 'required',
             'birthdate' => 'required',
             'address' => 'required|min:10',
-            'whatsapp' => 'required|number|min:10',
+            'whatsapp' => 'required|min:10',
             'instagram' => 'required',
             'facebook' => 'required',
             'photo_path' => 'image|file|max:512',
@@ -132,13 +132,14 @@ class AgentController extends Controller
        
 
          $validateData = $request->validate($rules);
-
+         if($request->photo_path){
          if($validateData['photo_path']){
             if($request->old_photo_path){
                 Storage::delete($request->old_photo_path);
             }
             $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
         }
+    }
 
         //return dd($article);
 

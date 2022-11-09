@@ -115,7 +115,7 @@
               <div class="form-group row">
                 <label for="whatsapp" class="col-sm-2 col-form-label">NO Whatsapp</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="NO Handphone Whatsapp diawali dengan kode negara contoh : 628122221222" @error('whatsapp') is-invalid @enderror required>
+                  <input type="number" class="form-control" id="whatsapp" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="NO Handphone Whatsapp diawali dengan kode negara contoh : 628122221222" @error('whatsapp') is-invalid @enderror required>
                   @error('whatsapp')
                   <div class="invalid-feedback">
                     {{ $message }}

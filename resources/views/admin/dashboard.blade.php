@@ -13,12 +13,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
+            <h1 class="m-0">Dashboard Admin Garda Adhi Pratama</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -32,16 +32,81 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
+                <h5 class="card-title">Monthly Recap Report {{ date('F Y') }}</h5>
               </div>
               <!-- /.card-header -->
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                      <div class="inner">
+                        <h3>Rp {{ number_format($sales) }}</h3>
+        
+                        <p>Total Sales</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-cash"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                      <div class="inner">
+                        <h3>Rp {{ number_format($sales*0.15) }}<!--<sup style="font-size: 20px">%</sup>--></h3>
+        
+                        <p>Total Profit</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                      <div class="inner">
+                        <h3>{{ $listing_baru }} Unit</h3>
+        
+                        <p>Listing Baru</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-home"></i>
+                      </div>
+                      <a href="/dashboard/listing" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <h3>{{ $agent_baru }} Orang</h3>
+        
+                        <p>Agent Baru</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="/dashboard/agents" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+              </div>
   
               <!-- ./card-body -->
               <div class="card-footer">
                 <div class="row">
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
-                      <h5 class="description-header">Rp 1.000.000</h5>
+                      <h5 class="description-header"></h5>
                       <span class="description-text">TOTAL SALES</span>
                     </div>
                     <!-- /.description-block -->
@@ -49,7 +114,7 @@
                   <!-- /.col -->
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
-                      <h5 class="description-header">Rp 1.000.000</h5>
+                      <h5 class="description-header">Rp {{ number_format($sales*0.15) }}</h5>
                       <span class="description-text">TOTAL PROFIT</span>
                     </div>
                     <!-- /.description-block -->
@@ -57,7 +122,7 @@
                   <!-- /.col -->
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
-                      <h5 class="description-header">8 UNIT</h5>
+                      <h5 class="description-header">{{ $listing_baru }} UNIT</h5>
                       <span class="description-text">LISTING BARU</span>
                     </div>
                     <!-- /.description-block -->
@@ -65,7 +130,7 @@
                   <!-- /.col -->
                   <div class="col-sm-3 col-6">
                     <div class="description-block">
-                      <h5 class="description-header">5 ORANG</h5>
+                      <h5 class="description-header">{{ $agent_baru }} ORANG</h5>
                       <span class="description-text">AGENT BARU</span>
                     </div>
                     <!-- /.description-block -->
@@ -96,78 +161,24 @@
                   <!-- /.card-header -->
                   <div class="card-body p-0">
                     <ul class="users-list clearfix">
+                      @foreach($agent_tertinggi as $sales)
                       <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user1-128x128.jpg')}}"
-                          alt="User Image"
+                        <img class="img-fluid" style="height: 160px; width: 160px"
+                          src="{{ asset('storage/' . $sales->photo_path )}}"
+                          alt="{{ $sales->name }}"
                         />
                         <a class="users-list-name" href="#"
-                          >Alexander Pierce</a
+                          >{{ $sales->name }}</a
                         >
-                        <span class="users-list-date">Today</span>
+                        <span class="users-list-date">Rp. {{ number_format($sales->Sales) }}</span>
                       </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user8-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Norman</a>
-                        <span class="users-list-date">Yesterday</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user7-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Jane</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user6-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">John</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user2-160x160.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Alexander</a>
-                        <span class="users-list-date">13 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user5-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Sarah</a>
-                        <span class="users-list-date">14 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user4-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Nora</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user3-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Nadia</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
+                      @endforeach
                     </ul>
                     <!-- /.users-list -->
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer text-center">
-                    <a href="javascript:">View All Users</a>
+                    <a href="/dashboard/agents">View All Users</a>
                   </div>
                   <!-- /.card-footer -->
                 </div>
@@ -178,83 +189,30 @@
                 <!-- USERS LIST -->
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Agent Sales Tertinggi</h3>
+                    <h3 class="card-title">Agent Sales Belum Clossing</h3>
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body p-0">
                     <ul class="users-list clearfix">
+                      @foreach($agent_clossing as $sales)
                       <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user1-128x128.jpg')}}"
-                          alt="User Image"
+                        <img class="img-fluid" style="height: 160px; width: 160px"
+                          src="{{ asset('storage/' . $sales->photo_path )}}"
+                          alt="{{ $sales->name }}"
                         />
                         <a class="users-list-name" href="#"
-                          >Alexander Pierce</a
+                          >{{ $sales->name }}</a
                         >
-                        <span class="users-list-date">Today</span>
+                        <span class="users-list-date">Potensi Rp. {{ number_format($sales->potensi) }}</span>
                       </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user8-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Norman</a>
-                        <span class="users-list-date">Yesterday</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user7-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Jane</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user6-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">John</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user2-160x160.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Alexander</a>
-                        <span class="users-list-date">13 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user5-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Sarah</a>
-                        <span class="users-list-date">14 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user4-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Nora</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
-                      <li>
-                        <img
-                          src="{{ asset('admin-template/assets/dist/img/user3-128x128.jpg')}}"
-                          alt="User Image"
-                        />
-                        <a class="users-list-name" href="#">Nadia</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
+                      @endforeach
+                    
                     </ul>
                     <!-- /.users-list -->
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer text-center">
-                    <a href="javascript:">View All Users</a>
+                    <a href="/dashboard/agents">View All Users</a>
                   </div>
                   <!-- /.card-footer -->
                 </div>
@@ -292,157 +250,31 @@
                   <table class="table m-0">
                     <thead>
                       <tr>
-                        <th>Order ID</th>
-                        <th>Item</th>
-                        <th>Status</th>
-                        <th>Popularity</th>
+                        <th>No. </th>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Alamat</th>
+                        <th>Agent</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>
-                          <a href="pages/examples/invoice.html">OR9842</a>
-                        </td>
-                        <td>Call of Duty IV</td>
-                        <td>
-                          <span class="badge badge-success">Shipped</span>
-                        </td>
-                        <td>
-                          <div
-                            class="sparkbar"
-                            data-color="#00a65a"
-                            data-height="20"
-                          >
-                            90,80,90,-70,61,-83,63
-                          </div>
-                        </td>
+                        @foreach ($listings as $listing)
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $listing->title }}</td>
+                        <td> Rp. {{ number_format($listing->price) }}</td>
+                        <td>{{ $listing->address }}</td>
+                        <td>{{ $listing->agent_id }}</td>
                       </tr>
-                      <tr>
-                        <td>
-                          <a href="pages/examples/invoice.html">OR1848</a>
-                        </td>
-                        <td>Samsung Smart TV</td>
-                        <td>
-                          <span class="badge badge-warning">Pending</span>
-                        </td>
-                        <td>
-                          <div
-                            class="sparkbar"
-                            data-color="#f39c12"
-                            data-height="20"
-                          >
-                            90,80,-90,70,61,-83,68
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="pages/examples/invoice.html">OR7429</a>
-                        </td>
-                        <td>iPhone 6 Plus</td>
-                        <td>
-                          <span class="badge badge-danger">Delivered</span>
-                        </td>
-                        <td>
-                          <div
-                            class="sparkbar"
-                            data-color="#f56954"
-                            data-height="20"
-                          >
-                            90,-80,90,70,-61,83,63
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="pages/examples/invoice.html">OR7429</a>
-                        </td>
-                        <td>Samsung Smart TV</td>
-                        <td>
-                          <span class="badge badge-info">Processing</span>
-                        </td>
-                        <td>
-                          <div
-                            class="sparkbar"
-                            data-color="#00c0ef"
-                            data-height="20"
-                          >
-                            90,80,-90,70,-61,83,63
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="pages/examples/invoice.html">OR1848</a>
-                        </td>
-                        <td>Samsung Smart TV</td>
-                        <td>
-                          <span class="badge badge-warning">Pending</span>
-                        </td>
-                        <td>
-                          <div
-                            class="sparkbar"
-                            data-color="#f39c12"
-                            data-height="20"
-                          >
-                            90,80,-90,70,61,-83,68
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="pages/examples/invoice.html">OR7429</a>
-                        </td>
-                        <td>iPhone 6 Plus</td>
-                        <td>
-                          <span class="badge badge-danger">Delivered</span>
-                        </td>
-                        <td>
-                          <div
-                            class="sparkbar"
-                            data-color="#f56954"
-                            data-height="20"
-                          >
-                            90,-80,90,70,-61,83,63
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="pages/examples/invoice.html">OR9842</a>
-                        </td>
-                        <td>Call of Duty IV</td>
-                        <td>
-                          <span class="badge badge-success">Shipped</span>
-                        </td>
-                        <td>
-                          <div
-                            class="sparkbar"
-                            data-color="#00a65a"
-                            data-height="20"
-                          >
-                            90,80,90,-70,61,-83,63
-                          </div>
-                        </td>
-                      </tr>
+                      @endforeach
+                    
                     </tbody>
                   </table>
                 </div>
                 <!-- /.table-responsive -->
               </div>
               <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <a
-                  href="javascript:void(0)"
-                  class="btn btn-sm btn-info float-left"
-                  >Place New Order</a
-                >
-                <a
-                  href="javascript:void(0)"
-                  class="btn btn-sm btn-secondary float-right"
-                  >View All Orders</a
-                >
-              </div>
+              
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->

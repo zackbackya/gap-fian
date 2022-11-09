@@ -20,7 +20,7 @@
 
   <link rel="stylesheet" href="{{ asset('admin-template/plugins/daterangepicker/daterangepicker.css') }}">
 
-  
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
  <!-- summernote -->
  <link rel="stylesheet" href="{{ asset('admin-template/plugins/summernote/summernote-bs4.min.css') }}">
 </head>

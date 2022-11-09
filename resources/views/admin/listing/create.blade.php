@@ -27,19 +27,19 @@
             <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Judul</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Judul">
+                  <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Judul" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="slug" class="col-sm-2 col-form-label">Slug</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{ old('slug') }}" readonly>
+                  <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{ old('slug') }}" readonly required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="address" class="col-sm-2 col-form-label">Alamat</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3"  id="address" name="address" value="{{ old('address') }}" placeholder="Alamat"></textarea>
+                    <textarea class="form-control" rows="3"  id="address" name="address" value="{{ old('address') }}" placeholder="Alamat" required></textarea>
                 </div>
               </div>
               <div class="form-group row">
@@ -63,26 +63,26 @@
               <div class="form-group row">
                 <label for="bedroom" class="col-sm-2 col-form-label">Jumlah Kamar Tidur</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="bedroom" name="bedroom" value="{{ old('bedroom') }}" placeholder="Jumlah Kamar Tidur">
+                  <input type="number" class="form-control" id="bedroom" name="bedroom" value="{{ old('bedroom') }}" placeholder="Jumlah Kamar Tidur" required>
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="bathroom" class="col-sm-2 col-form-label">Jumlah Kamar Mandi</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="bathroom" name="bathroom" value="{{ old('bathroom') }}" placeholder="Jumlah Kamar Mandi">
+                  <input type="number" class="form-control" id="bathroom" name="bathroom" value="{{ old('bathroom') }}" placeholder="Jumlah Kamar Mandi" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="type" class="col-sm-2 col-form-label">Type</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="type" name="type" value="{{ old('type') }}" placeholder="Type Contoh 36/72">
+                  <input type="text" class="form-control" id="type" name="type" value="{{ old('type') }}" placeholder="Type Contoh 36/72" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="building_width" class="col-sm-2 col-form-label">Luas Bangunan M<sup>2</sup></label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="building_width" name="building_width" value="{{ old('building_width') }}" placeholder="Luas Bangunan Dalam Meter Persegi Tulis Angkanya saja contoh 45">
+                  <input type="number" class="form-control" id="building_width" name="building_width" value="{{ old('building_width') }}" placeholder="Luas Bangunan Dalam Meter Persegi Tulis Angkanya saja contoh 45" required>
               
                 </div>
               
@@ -90,14 +90,14 @@
               <div class="form-group row">
                 <label for="area_width" class="col-sm-2 col-form-label">Luas Tanah M<sup>2</sup></label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="area_width" name="area_width" value="{{ old('area_width') }}" placeholder="Luas Tanah Dalam Meter Persegi Tulis Angkanya saja contoh 900">
+                  <input type="number" class="form-control" id="area_width" name="area_width" value="{{ old('area_width') }}" placeholder="Luas Tanah Dalam Meter Persegi Tulis Angkanya saja contoh 900" required>
                 </div>
                 
               </div>
               <div class="form-group row">
                 <label for="garage" class="col-sm-2 col-form-label">Garasi</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="garage" name="garage" value="{{ old('garage') }}" placeholder="Garasi">
+                  <input type="number" class="form-control" id="garage" name="garage" value="{{ old('garage') }}" placeholder="Garasi" required>
                 </div>
               </div>
               <div class="form-group row">
@@ -106,7 +106,7 @@
                  
                   
                 <div class="col-sm-4">
-                  <input class="number form-control" id="price" name="price" value="{{ old('price') }}" placeholder="Tulis Harga Angkanya saja Contoh : 1000000 ">
+                  <input class="number form-control" id="price" name="price" value="{{ old('price') }}" placeholder="Tulis Harga Angkanya saja Contoh : 1000000 " required>
                 </div>
                 
               </div>
@@ -114,7 +114,7 @@
                 <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
                 <div class="col-sm-10">
                   <div class="card-body">
-                    <textarea id="description" name="description">
+                    <textarea id="description" name="description" required>
                      {{ old('description') }}
                                                 </textarea>
                   </div>
@@ -160,13 +160,13 @@
               <div class="form-group row">
                 <label for="owner_name" class="col-sm-2 col-form-label">Pemilik</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="owner_name" name="owner_name" value="{{ old('owner_name') }}" placeholder="Pemilik">
+                  <input type="text" class="form-control" id="owner_name" name="owner_name" value="{{ old('owner_name') }}" placeholder="Pemilik" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="owner_phone" class="col-sm-2 col-form-label"> No Telpon Pemilik</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="owner_phone" name="owner_phone" placeholder="No Telpon Pemilik" value="{{ old('owner_phone') }}">
+                  <input type="text" class="form-control" id="owner_phone" name="owner_phone" placeholder="No Telpon Pemilik" value="{{ old('owner_phone') }}" required>
                 </div>
               </div>
 

@@ -171,14 +171,21 @@ class ListingController extends Controller
             $request['buyer_agent_id'] = '';
         }
 
+        
+
         $validateData = $request->validate($rules);
 
-        if($validateData['photo_path']){
-            if($request->old_photo_path){
-                Storage::delete($request->old_photo_path);
+        $validateData['price']= str_replace( ',', '', $validateData['price']);
+        
+        if($request->photo_path){
+            if($validateData['photo_path']){
+                if($request->old_photo_path){
+                    Storage::delete($request->old_photo_path);
+                }
             }
-            $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+                
         }
+
 
         //return ddd($listing);
 

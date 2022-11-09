@@ -11,7 +11,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit User</h1>
+            <h1>Edit User {{ $userLogin->id }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -26,7 +26,6 @@
           @csrf
           <div class="card-body">
             <div class="card-body">
-              <label>disini keluar  {{ $userLogin->agent_id }}</label>
 
               <div class="form-group row">
                 <label for="agent_id" class="col-sm-2 col-form-label">Nama</label>
@@ -50,7 +49,7 @@
                   <div class="form-group row">
                     <label for="username" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="username" name="username" value="{{ $userLogin->username }}" placeholder="Username" @error('username') is-invalid @enderror >
+                      <input type="text" class="form-control" id="username" name="username" value="{{ $userLogin->username }}" placeholder="Username" @error('username') is-invalid @enderror required >
                       @error('username')
                           <div class="invalid-feedback">
                             {{ $message }}
@@ -61,7 +60,7 @@
                   <div class="form-group row">
                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" id="password" name="password" value="{{ $userLogin->password }}" placeholder="Password" @error('password') is-invalid @enderror >
+                      <input type="password" class="form-control" id="password" name="password" value="{{ $userLogin->password }}" placeholder="Password" @error('password') is-invalid @enderror required>
                       @error('password')
                           <div class="invalid-feedback">
                             {{ $message }}

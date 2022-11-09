@@ -61,7 +61,7 @@
                       <td>{{ $listing->title }}</td>
                       <td>{{ $listing->address }}</td>
                       <td>{{ $listing->category_name }}</td>
-                      <td>{{ $listing->price }}</td>
+                      <td>Rp. {{ number_format($listing->price) }}</td>
                       <td>{{ $listing->name }}</td>
                       <td>{{ $listing->created_at }}</td>
                       <td class="project-actions text-center">
