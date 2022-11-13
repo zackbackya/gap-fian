@@ -25,7 +25,7 @@ class HomeController extends Controller
         ->limit(5)
         ->get();
 
-        $agents = DB::table('listings')
+        $agents_sudah_jual = DB::table('listings')
         ->join('agents', 'listings.agent_id', '=', 'agents.id')
         ->select('agents.*', DB::raw('SUM(listings.price) As Sales'))
         ->where('listings.status','=','Terjual')
@@ -52,7 +52,7 @@ class HomeController extends Controller
             "title" => "home",
             'articles' => $articles,
             'listings' => $listings,
-            'agents' => $agents
+            'agents' => Agent::all()
         ]);
     }
 
