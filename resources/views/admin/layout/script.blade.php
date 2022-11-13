@@ -72,7 +72,7 @@ const slug = document.querySelector('#slug');
       var date_input=$('input[name="birthdate"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-        format: 'yyyy/mm/dd',
+        format: 'yyyy-mm-dd',
         container: container,
         todayHighlight: true,
         autoclose: true,
@@ -140,6 +140,7 @@ function readURL(input) {
  </script>
 
 <script>
+  const status = document.querySelector('#status');
       window.onload = function() {
     if(status.value === "Terjual"){
     document.getElementById('buyerAgentID').style.display = 'unset';

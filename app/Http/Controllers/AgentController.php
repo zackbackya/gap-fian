@@ -45,7 +45,7 @@ class AgentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
         $validated = $request->validate([
             'nik' => 'required|max:255',
             'name' => 'required',
@@ -61,6 +61,7 @@ class AgentController extends Controller
         ]);
 
         //ddd($validated);
+        */
 
         if($request->photo_path){
             if($request->old_photo_path){
@@ -132,7 +133,7 @@ class AgentController extends Controller
      */
     public function update(Request $request, Agent $agent)
     {
-        //
+        /*
         $rules = [
             'nik' => 'required|max:255',
             'name' => 'required',
@@ -159,6 +160,16 @@ class AgentController extends Controller
             $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
         //}
     }
+    */
+
+    if($request->photo_path){
+        if($request->old_photo_path){
+            Storage::delete($request->old_photo_path);
+        }
+        $photo_path= $request->file('photo_path')->store('uploaded_images');
+    }else {
+        $photo_path = $request->old_photo_path;
+    }
 
         
 
@@ -175,7 +186,7 @@ class AgentController extends Controller
             'whatsapp' => $request->whatsapp,
             'instagram' => $request->instagram,
             'facebook' => $request->facebook,
-            'photo_path' => $request->photo_path,
+            'photo_path' => $photo_path,
             'status' => $request->status
         ]);
 
