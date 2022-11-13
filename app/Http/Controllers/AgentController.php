@@ -52,7 +52,7 @@ class AgentController extends Controller
             'sex' => 'required',
             'email' => 'required',
             'birthdate' => 'required',
-            'address' => 'required|min:10',
+            'address' => 'required',
             'whatsapp' => 'required|min:10',
             'instagram' => 'required',
             'facebook' => 'required',
@@ -62,12 +62,31 @@ class AgentController extends Controller
 
         //ddd($validated);
 
-        if($validated['photo_path']){
-            $validated['photo_path'] = $request->file('photo_path')->store('uploaded_images');
+        if($request->photo_path){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $photo_path= $request->file('photo_path')->store('uploaded_images');
+        }else {
+            $photo_path = $request->old_photo_path;
         }
 
 
-        Agent::create($validated);
+
+        //Agent::create($validated);
+        Agent::create([
+            'nik' => $request->nik,
+            'name' => $request->name,
+            'sex' => $request->sex,
+            'email' => $request->email,
+            'birthdate' => $request->birthdate,
+            'address' => $request->address,
+            'whatsapp' => $request->whatsapp,
+            'instagram' => $request->instagram,
+            'facebook' => $request->facebook,
+            'photo_path' => $photo_path,
+            'status' => $request->status
+        ]);
         return redirect('/dashboard/agents')->with('success','Data Sukses Ditambahkan');
 
     }
@@ -111,7 +130,7 @@ class AgentController extends Controller
      * @param  \App\Models\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAgentRequest $request, Agent $agent)
+    public function update(Request $request, Agent $agent)
     {
         //
         $rules = [
@@ -129,22 +148,37 @@ class AgentController extends Controller
         ];
 
         
-       
+        //return ddd($rules);
 
          $validateData = $request->validate($rules);
-         if($request->photo_path){
+         //if($request->photo_path){
          if($validateData['photo_path']){
             if($request->old_photo_path){
                 Storage::delete($request->old_photo_path);
             }
             $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
-        }
+        //}
     }
 
-        //return dd($article);
+        
+
+        //Agent::where('id', $agent->id)->update($validateData);
 
         Agent::where('id', $agent->id)
-        ->update($validateData);
+        ->update([
+            'nik' => $request->nik,
+            'name' => $request->name,
+            'sex' => $request->sex,
+            'email' => $request->email,
+            'birthdate' => $request->birthdate,
+            'address' => $request->address,
+            'whatsapp' => $request->whatsapp,
+            'instagram' => $request->instagram,
+            'facebook' => $request->facebook,
+            'photo_path' => $request->photo_path,
+            'status' => $request->status
+        ]);
+
         return redirect('/dashboard/agents')->with('success','Data Sukses Dirubah');
     }
 

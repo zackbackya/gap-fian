@@ -63,6 +63,7 @@ class ArticleController extends Controller
         //
 
         //return $request;
+        /*
         $validated = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required',
@@ -76,7 +77,27 @@ class ArticleController extends Controller
         if($validated['photo_path']){
             $validated['photo_path'] = $request->file('photo_path')->store('uploaded_images');
         }
-        Article::create($validated);
+        */
+
+        if($request->photo_path){
+            $photo_path= $request->file('photo_path')->store('uploaded_images');
+        }else{
+            $photo_path="";
+        }
+
+
+        //Article::create($validated);
+
+        Article::create([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'photo_path' => $photo_path,
+            'source' => $request->source,
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+            'status' => $request->status
+        ]);
+
         return redirect('/dashboard/article')->with('success','Article Sukses Ditambahkan');
 
     }
@@ -122,6 +143,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        /*
         $rules = [
             'title' => 'required|max:255',
             'source' => 'required',
@@ -145,11 +167,30 @@ class ArticleController extends Controller
             $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
         }
     }
+    */
 
         //return dd($article);
 
-        Article::where('id', $article->id)
-        ->update($validateData);
+        //Article::where('id', $article->id)->update($validateData);
+        
+        if($request->photo_path){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $photo_path= $request->file('photo_path')->store('uploaded_images');
+        }else {
+            $photo_path = $request->old_photo_path;
+        }
+
+        Article::where('id', $article->id)->update([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'photo_path' => $photo_path,
+            'source' => $request->source,
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+            'status' => $request->status
+        ]);
         return redirect('/dashboard/article')->with('success','Article Sukses Dirubah');
     }
 

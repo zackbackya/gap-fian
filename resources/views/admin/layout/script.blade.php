@@ -138,4 +138,25 @@ function readURL(input) {
   }
 }
  </script>
-    
+
+<script>
+      window.onload = function() {
+    if(status.value === "Terjual"){
+    document.getElementById('buyerAgentID').style.display = 'unset';
+  } else if(status.value === "Belum Terjual"){
+    document.getElementById('buyerAgentID').style.display = 'none';
+  }
+
+};
+
+status.addEventListener('change', function() {
+  if(status.value === "Terjual"){
+    document.getElementById('buyerAgentID').style.display = 'unset';
+  } else if(status.value === "Belum Terjual"){
+    document.getElementById('buyerAgentID').style.display = 'none';
+  }
+
+  });
+
+
+  </script>

@@ -102,42 +102,7 @@
               </div>
   
               <!-- ./card-body -->
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <h5 class="description-header"></h5>
-                      <span class="description-text">TOTAL SALES</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <h5 class="description-header">Rp {{ number_format($sales*0.15) }}</h5>
-                      <span class="description-text">TOTAL PROFIT</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <h5 class="description-header">{{ $listing_baru }} UNIT</h5>
-                      <span class="description-text">LISTING BARU</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block">
-                      <h5 class="description-header">{{ $agent_baru }} ORANG</h5>
-                      <span class="description-text">AGENT BARU</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                </div>
-                <!-- /.row -->
-              </div>
+              
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->
@@ -189,7 +154,7 @@
                 <!-- USERS LIST -->
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Agent Sales Belum Clossing</h3>
+                    <h3 class="card-title">Agent Belum Clossing</h3>
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body p-0">
@@ -264,7 +229,7 @@
                         <td>{{ $listing->title }}</td>
                         <td> Rp. {{ number_format($listing->price) }}</td>
                         <td>{{ $listing->address }}</td>
-                        <td>{{ $listing->agent_id }}</td>
+                        <td>{{ $listing->name }}</td>
                       </tr>
                       @endforeach
                     

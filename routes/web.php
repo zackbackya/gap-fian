@@ -9,6 +9,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryListingController;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\HomeAgentsController;
+use App\Http\Controllers\HomeArticlesController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeListingsController;
 use App\Http\Controllers\ListingController;
 use App\Models\Category;
 use App\Models\CategoryArticle;
@@ -26,38 +30,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 //route for frontend page
-Route::get('/', function () {
-    //return view('welcome');
-    return view('home.home',[
-        "title" => "home"
-    ]);
-});
 
-Route::get('/property', function () {
-    //return view('welcome');
-    return view('home.property-grid',[
-        "title" => "property"
-    ]);
-});
+ 
 
-Route::get('/agents', function () {
-    //return view('welcome');
-    return view('home.agents-grid',[
-        "title" => "agents"
-    ]);
-});
 
 Route::get('/about', function () {
     //return view('welcome');
     return view('home.about',[
         "title" => "agent"
-    ]);
-});
-
-Route::get('/blog', function () {
-    //return view('welcome');
-    return view('home.blog-grid',[
-        "title" => "blog"
     ]);
 });
 
@@ -89,6 +69,12 @@ Route::get('/dashboard/profile', function () {
 });
 
 //Route::get('/dashboard/article',[ArticleController::class, 'index']);
+
+Route::get('/',[HomeController::class, 'index']);
+Route::get('/articles',[HomeArticlesController::class, 'index']);
+Route::get('/agents',[HomeAgentsController::class, 'index']);
+Route::get('/listings',[HomeListingsController::class, 'index']);
+
 
 Route::get('/login',[LoginController::class, 'index'])->middleware('guest');
 Route::post('/login',[LoginController::class, 'authentication']);

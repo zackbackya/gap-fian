@@ -1,7 +1,6 @@
-@include('home.layout.header')
+@extends('home.main')
 
-@include('home.layout.navbar')
-
+@section('container')
   <main id="main">
 
     <!-- ======= Intro Single ======= -->
@@ -159,5 +158,4 @@
     </section><!-- End Contact Single-->
 
   </main><!-- End #main -->
-  @include('home.layout.footer')
-  @include('home.layout.script')
+@endsection

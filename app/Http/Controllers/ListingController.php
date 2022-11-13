@@ -82,6 +82,7 @@ class ListingController extends Controller
             'status' => 'required',
         ]);
 
+        /*
         if($validateData['photo_path']){
             $validateData['photo_path'] = $request->file('photo_path')->store('uploaded_images');
         }
@@ -92,7 +93,35 @@ class ListingController extends Controller
         
         ///ddd($validateData['price']);
 
-        Listing::create($validateData);
+        //Listing::create($validateData);
+        */
+
+
+        //if( is_numeric( $data['price'] ) ) {
+            $price= str_replace( ',', '', $request['price']);
+        //}
+        $photo_path= $request->file('photo_path')->store('uploaded_images');
+
+        Listing::create([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'address' =>  $request->address,
+            'categoryListing_id' =>  $request->categoryListing_id,
+            'bedroom' =>  $request->bedroom,
+            'bathroom' =>  $request->bathroom,
+            'type' =>  $request->type,
+            'building_width' =>  $request->building_width,
+            'area_width' =>  $request->area_width,
+            'garage' =>  $request->garage,
+            'price' =>  $price,
+            'description' =>  $request->description,
+            'photo_path' => $photo_path,
+            'agent_id' =>  $request->agent_id,
+            'owner_name' =>  $request->owner_name,
+            'owner_phone' =>  $request->owner_phone,
+            'status' =>  $request->status,
+        ]);
+
         return redirect('/dashboard/listing')->with('success','Data Sukses Ditambahkan');
 
     }
@@ -139,9 +168,9 @@ class ListingController extends Controller
      * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateListingRequest $request, Listing $listing)
+    public function update(Request $request, Listing $listing)
     {
-        //
+        /*
         $rules = [
             'title' => 'required|max:255',
             'slug' => 'required',
@@ -163,9 +192,11 @@ class ListingController extends Controller
             'buyer_agent_id' => 'max:255'
         ];
 
+        /*
         if($request->slug_edit != $listing->slug){
             $rules['slug'] = 'required|unique:articles';
         }
+        
 
         if($request->status != "Terjual"){
             $request['buyer_agent_id'] = '';
@@ -177,20 +208,53 @@ class ListingController extends Controller
 
         $validateData['price']= str_replace( ',', '', $validateData['price']);
         
-        if($request->photo_path){
+        //if($request->photo_path){
             if($validateData['photo_path']){
                 if($request->old_photo_path){
                     Storage::delete($request->old_photo_path);
                 }
             }
+            
                 
-        }
+        //s}
 
 
         //return ddd($listing);
+*/
+        if($request->photo_path){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $photo_path= $request->file('photo_path')->store('uploaded_images');
+        }else {
+            $photo_path = $request->old_photo_path;
+        }
 
-        Listing::where('id', $listing->id)
-        ->update($validateData);
+        //Listing::where('id', $listing->id)->update($validateData);
+
+        $price= str_replace( ',', '', $request['price']);
+        
+        Listing::where('id', $listing->id)->update([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'address' => $request->address,
+            'categoryListing_id' => $request->categoryListing_id,
+            'bedroom' => $request->bedroom,
+            'bathroom' => $request->bathroom,
+            'type' => $request->type,
+            'building_width' => $request->building_width,
+            'area_width' => $request->area_width,
+            'garage' => $request->garage,
+            'price' => $price,
+            'description' => $request->description,
+            'photo_path' => $photo_path,
+            'agent_id' => $request->agent_id,
+            'owner_name' => $request->owner_name,
+            'owner_phone' => $request->owner_phone,
+            'status' => $request->status,
+            'buyer_agent_id' => $request->buyer_agent_id
+        ]);
+
         return redirect('/dashboard/listing')->with('success','Data Sukses Dirubah');
     }
 

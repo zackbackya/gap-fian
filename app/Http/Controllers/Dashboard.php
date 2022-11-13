@@ -18,16 +18,29 @@ class Dashboard extends Controller
         ->orderBy('created_at', 'desc')
         ->sum('price');
         
+        /*
         $listings = Listing::whereMonth('created_at', date('m'))
         ->whereYear('created_at', date('Y'))
         ->orderBy('created_at', 'desc')
         ->limit(10)
+        ->get();
+        */
+
+        $listings = DB::table('listings')
+        ->join('agents', 'listings.agent_id', '=', 'agents.id')
+        ->select('listings.*',  'agents.name')
+        ->whereMonth('listings.created_at', date('m'))
+        ->whereYear('listings.created_at', date('Y'))
+        ->orderBy('listings.created_at','desc')
+        ->limit(8)
         ->get();
         
         $jumlah_listing_baru = Listing::whereMonth('created_at', date('m'))
         ->whereYear('created_at', date('Y'))
         ->orderBy('created_at', 'desc')
         ->count();
+
+        
 
         $jumlah_agent_baru = Agent::whereMonth('created_at', date('m'))
         ->whereYear('created_at', date('Y'))
