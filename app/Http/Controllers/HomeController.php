@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         $articles = DB::table('articles')
         ->join('category_articles', 'articles.category_id', '=', 'category_articles.id')
-        ->where('articles.status','=','Aktif')
+        ->where('articles.status','=','T')
         ->select('articles.*', 'category_articles.category_name')
         ->whereMonth('articles.created_at', date('m'))
         ->whereYear('articles.created_at', date('Y'))

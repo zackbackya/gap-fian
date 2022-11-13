@@ -37,7 +37,7 @@
               <h2 class="title-a">Listing Properti Terbaru</h2>
             </div>
             <div class="title-link">
-              <a href="property-grid.html">All Property
+              <a href="/listings">All Property
                 <span class="bi bi-chevron-right"></span>
               </a>
             </div>
