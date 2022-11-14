@@ -73,7 +73,15 @@ Route::get('/dashboard/profile', function () {
 Route::get('/',[HomeController::class, 'index']);
 Route::get('/articles',[HomeArticlesController::class, 'index']);
 Route::get('/agents',[HomeAgentsController::class, 'index']);
-Route::get('/listings',[HomeListingsController::class, 'index']);
+//Route::get('/listings',[HomeListingsController::class, 'index']);
+//Route::get('/listings/{slug}', [HomeListingsController::class, 'show']);
+
+Route::controller(HomeListingsController::class)->group(function () {
+    Route::get('/listings/{slug}', 'show');
+    Route::get('/listings', 'index');
+});
+
+//Route::resource('/listings',HomeListingsController::class);
 
 
 Route::get('/login',[LoginController::class, 'index'])->middleware('guest');

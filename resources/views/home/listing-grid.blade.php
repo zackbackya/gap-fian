@@ -1,6 +1,7 @@
 @include('home.layout.header')
 
 @include('home.layout.navbar')
+@include('home.layout.floating')
   <main id="main">
 
     <!-- ======= Intro Single ======= -->
@@ -52,13 +53,13 @@
           <div class="col-md-4">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
-                <img src="{{ asset('home-template/assets/img/property-3.jpg') }}" alt="" class="img-a img-fluid">
+                <img src="{{ asset('storage/' . $listing->photo_path )}}" alt="" class="img-a img-fluid">
               </div>
               <div class="card-overlay">
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <h2 class="card-title-a">
-                      <a href="#">{{ $listing->title }}
+                      <a href="/listings/{{ $listing->slug }}">{{ $listing->title }}
                     </h2>
                   </div>
                   <div class="card-body-a">

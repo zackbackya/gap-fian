@@ -1,6 +1,7 @@
 @include('home.layout.header')
 
 @include('home.layout.navbar')
+@include('home.layout.floating')
   <main id="main">
 
     <!-- ======= Intro Single ======= -->

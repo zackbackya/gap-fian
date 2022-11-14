@@ -6,3 +6,11 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('home-template/assets/js/main.js') }}"></script>
+
+<script type="text/javascript">
+    $(function () {
+      $('#myDiv').floatingWhatsApp({
+        phone: '5491133359850'
+      });
+    });
+  </script>

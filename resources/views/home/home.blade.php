@@ -1,7 +1,7 @@
 @include('home.layout.header')
 
 @include('home.layout.navbar')
-
+@include('home.layout.floating')
 <!-- ======= Intro Section ======= -->
 <div class="intro intro-carousel swiper position-relative">
 

@@ -43,4 +43,10 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
+  <script type="text/javascript" src="{{ asset('wa-floating/jquery-3.3.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('wa-floating/floating-wpp.min.js')}}"></script>
+  <link rel="stylesheet" href="{{ asset('wa-floating/floating-wpp.min.css') }}">
+  
+
 </head>

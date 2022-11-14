@@ -18,11 +18,26 @@ class HomeListingsController extends Controller
     ->whereYear('listings.created_at', date('Y'))
     ->orderBy('listings.created_at','desc')
     ->limit(5)
-    ->paginate(3);
+    ->paginate(9);
 
             return view('home.listing-grid',[
             "title" => "listing",
             "listings" => $listings
         ]);
+    }
+
+    public function show($slug)
+    {
+        
+        return view('home.listing-single',[
+            "title" => "listing",
+            "listing" => Listing::where('slug', $slug)
+            ->join('category_listings', 'listings.categoryListing_id', '=', 'category_listings.id')
+            ->Join('agents', 'listings.agent_id', '=', 'agents.id')
+            ->select('listings.*', 'category_listings.category_name as category_name', 'agents.*','agents.photo_path as photo_agent')->first()
+           
+
+        ]);
+       
     }
 }
