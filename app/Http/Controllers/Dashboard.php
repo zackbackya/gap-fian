@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use App\Models\Agent;
+use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Controller
@@ -36,6 +37,11 @@ class Dashboard extends Controller
         ->get();
         
         $jumlah_listing_baru = Listing::whereMonth('created_at', date('m'))
+        ->whereYear('created_at', date('Y'))
+        ->orderBy('created_at', 'desc')
+        ->count();
+
+        $jumlah_article_baru = Article::whereMonth('created_at', date('m'))
         ->whereYear('created_at', date('Y'))
         ->orderBy('created_at', 'desc')
         ->count();
@@ -87,6 +93,7 @@ class Dashboard extends Controller
             'listings' => $listings,
             'sales' => $sales,
             'listing_baru' => $jumlah_listing_baru,
+            'article_baru' => $jumlah_article_baru,
             'agent_baru' => $jumlah_agent_baru,
             'agent_tertinggi' => $jumlah_agent_tertinggi,
             'agent_terendah' => $jumlah_agent_terendah,

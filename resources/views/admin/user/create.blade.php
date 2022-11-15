@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <select class="custom-select" id="access" name="access"  required>
                                 <option value="Admin">Admin</option>
-                                <option value="Superadmin">Superadmin</option>                                 
+                                <option value="Superadmin">Super Admin</option>                                 
                             </select>
                           </div>
                     </div>

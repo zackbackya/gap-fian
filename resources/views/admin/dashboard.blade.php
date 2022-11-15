@@ -37,6 +37,7 @@
               <!-- /.card-header -->
               <div class="container-fluid">
                 <div class="row">
+                  @can('superadmin')
                   <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
@@ -51,12 +52,14 @@
                       <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
+                  @endcan
                   <!-- ./col -->
+                  @can('superadmin')
                   <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
                       <div class="inner">
-                        <h3>Rp {{ number_format($sales*0.15) }}<!--<sup style="font-size: 20px">%</sup>--></h3>
+                        <h3>Rp {{ number_format($sales*0.20) }}<!--<sup style="font-size: 20px">%</sup>--></h3>
         
                         <p>Total Profit</p>
                       </div>
@@ -67,6 +70,7 @@
                     </div>
                   </div>
                   <!-- ./col -->
+                  @endcan
                   
                   <!-- ./col -->
                   <div class="col-lg-3 col-6">
@@ -83,6 +87,7 @@
                       <a href="/dashboard/listing" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
+
                   <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-warning">
@@ -97,6 +102,24 @@
                       <a href="/dashboard/agents" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
+
+                  @can('admin')
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                      <div class="inner">
+                        <h3>{{ $article_baru }} Article</h3>
+        
+                        <p>Article Baru</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-ios-paper"></i>
+                      </div>
+                      <a href="/dashboard/articles" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  @endcan
+
                   <!-- ./col -->
                 </div>
               </div>
@@ -116,6 +139,7 @@
           <!-- Left col -->
           <div class="col-md-12">
             <!-- /.card -->
+            @can('superadmin')
             <div class="row">
               <div class="col-md-6">
                 <!-- USERS LIST -->
@@ -186,6 +210,7 @@
               <!-- /.col -->
             </div>
             <!-- /.row -->
+            @endcan
   
             <!-- TABLE: LATEST ORDERS -->
             <div class="card">

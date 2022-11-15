@@ -49,7 +49,7 @@
                   </div>
                   <div class="card-title-b">
                     <h2 class="title-2">
-                      <a href="#">{{ $article->title }}
+                      <a href="/{{ $title }}/{{ $article->slug }}">{{ $article->title }}
                         
                     </h2>
                   </div>

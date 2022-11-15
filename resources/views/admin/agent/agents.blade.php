@@ -72,6 +72,7 @@
                               <i class="fas fa-pencil-alt">
                               </i> Edit
                             </a>
+                            @can('superadmin')
                           <form method="post" action="/dashboard/{{ $title }}/{{ $agent->id }}" class="d-inline">
                             @method('delete')
                             @csrf
@@ -80,6 +81,7 @@
                               </i>
                               Delete
                           </button>
+                          @endcan
 
                           </form>
                       </td>

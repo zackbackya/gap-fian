@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeArticlesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeListingsController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ReportController;
 use App\Models\Category;
 use App\Models\CategoryArticle;
 use Illuminate\Support\Facades\Route;
@@ -71,32 +72,40 @@ Route::get('/dashboard/profile', function () {
 //Route::get('/dashboard/article',[ArticleController::class, 'index']);
 
 Route::get('/',[HomeController::class, 'index']);
-Route::get('/articles',[HomeArticlesController::class, 'index']);
+Route::resource('/articles',HomeArticlesController::class);
 Route::get('/agents',[HomeAgentsController::class, 'index']);
 //Route::get('/listings',[HomeListingsController::class, 'index']);
 //Route::get('/listings/{slug}', [HomeListingsController::class, 'show']);
 
+
+Route::resource('/listings',HomeListingsController::class);
+
+/*
 Route::controller(HomeListingsController::class)->group(function () {
     Route::get('/listings/{slug}', 'show');
     Route::get('/listings', 'index');
 });
+*/
 
 //Route::resource('/listings',HomeListingsController::class);
 
 
-Route::get('/login',[LoginController::class, 'index'])->middleware('guest');
+Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login',[LoginController::class, 'authentication']);
 Route::post('/logout',[LoginController::class, 'logout']);
 
-Route::get('/dashboard/article/checkSlug',[ArticleController::class, 'checkSlug']);
-Route::resource('/dashboard/listing',ListingController::class);
-Route::resource('/dashboard/agents',AgentController::class);
-Route::resource('/dashboard/article',ArticleController::class);
-Route::resource('/dashboard/user',UserLoginController::class);
-Route::resource('/dashboard',Dashboard::class);
+Route::get('/dashboard/article/checkSlug',[ArticleController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/listing',ListingController::class)->middleware('auth');
+Route::resource('/dashboard/agents',AgentController::class)->middleware('auth');
+Route::resource('/dashboard/article',ArticleController::class)->middleware('auth');
+Route::resource('/dashboard/user',UserLoginController::class)->middleware('superadmin');
+Route::resource('/dashboard/report',ReportController::class)->middleware('superadmin');
+//Route::resource('/dashboard',Dashboard::class)->middleware('auth');
 
-Route::resource('/dashboard/categoryListing',CategoryListingController::class);
-Route::resource('/dashboard/categoryArticle',CategoryArticleController::class);
+Route::get('/dashboard',[Dashboard::class,'index'])->middleware('auth');
+
+Route::resource('/dashboard/categoryListing',CategoryListingController::class)->middleware('auth');
+Route::resource('/dashboard/categoryArticle',CategoryArticleController::class)->middleware('auth');
 
 //Route::post('/add_user',[UserLoginController::class, 'store'])->middleware('auth');
 

@@ -82,7 +82,7 @@
                                 @else
 
                                 <option value="Admin">Admin</option>
-                                <option value="Superadmin">Superadmin</option>  
+                                <option value="Superadmin">Super Admin</option>   
                                     @endif
                                 
                             </select>

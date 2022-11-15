@@ -13,7 +13,7 @@ class HomeAgentsController extends Controller
     {
             return view('home.agents-grid',[
             "title" => "agents",
-            "agents" => DB::table('agents')->orderBy('name')->paginate(9)
+            "agents" => DB::table('agents')->where('status','=','Aktif')->orderBy('name')->paginate(9)
         ]);
     }
 }

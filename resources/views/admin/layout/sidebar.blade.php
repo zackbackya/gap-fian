@@ -8,7 +8,7 @@
         class="brand-image img-circle elevation-3"
         style="opacity: 0.8"
       />
-      <span class="brand-text font-weight-light">GAP | Admin</span>
+      <span class="brand-text font-weight-light">GAP | {{ auth()->user()->access}}</span>
     </a>
 
     <!-- Sidebar -->
@@ -51,23 +51,15 @@
               <p>Dashboard</p>
             </a>
           </li>
-          
-          <?php 
-          $access = auth()->user()->access;
-          
-          if ($access = "Superadmin"){?>
-            
-
-<?php            }
-
-          ?>
-               
+      
+               @can('superadmin')
                <li class="nav-item">
                 <a href="/dashboard/report" class="nav-link {{ ($title === "report")? 'active' : '' }}">
                   <i class="nav-icon fas fa-file"></i>
                   <p>Report</p>
                 </a>
               </li>
+              @endcan
            
                
 
@@ -99,12 +91,16 @@
             </a>
           </li>
 
+          @can('superadmin')
           <li class="nav-item">
             <a href="/dashboard/user" class="nav-link {{ ($title === "user")? 'active' : '' }}">
               <i class="nav-icon fa fa-user-secret"></i>
               <p>User</p>
             </a>
           </li>
+          @endcan
+
+
 
           <li class="nav-item">
             <a href="/dashboard/categoryArticle" class="nav-link {{ ($title === "categoryArticle")? 'active' : '' }}">
