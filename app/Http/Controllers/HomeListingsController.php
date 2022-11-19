@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\Profile;
 use Illuminate\Support\Facades\DB;
 
 class HomeListingsController extends Controller
@@ -22,7 +23,8 @@ class HomeListingsController extends Controller
 
             return view('home.listing-grid',[
             "title" => "listing",
-            "listings" => $listings
+            "listings" => $listings,
+            'profile' => Profile::firstorfail()
         ]);
     }
 
@@ -31,6 +33,7 @@ class HomeListingsController extends Controller
         
         return view('home.listing-single',[
             "title" => "listing",
+            'profile' => Profile::firstorfail(),
             "listing" => Listing::where('slug', $slug)
             ->join('category_listings', 'listings.categoryListing_id', '=', 'category_listings.id')
             ->Join('agents', 'listings.agent_id', '=', 'agents.id')

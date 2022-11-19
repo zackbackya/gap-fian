@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Agent;
 use App\Models\Listing;
 use App\Models\Article;
+use App\Models\Profile;
+use App\Models\Testimony;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -52,7 +54,9 @@ class HomeController extends Controller
             "title" => "home",
             'articles' => $articles,
             'listings' => $listings,
-            'agents' => Agent::all()
+            'agents' => Agent::all(),
+            'testimonies' => Testimony::all(),
+            'profile' => Profile::firstorfail()
         ]);
     }
 

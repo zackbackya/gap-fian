@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Garda Adhi Pradana</title>
+  <title>{{ $profile->company_name }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -48,5 +48,14 @@
   <script type="text/javascript" src="{{ asset('wa-floating/floating-wpp.min.js')}}"></script>
   <link rel="stylesheet" href="{{ asset('wa-floating/floating-wpp.min.css') }}">
   
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+
+<style>
+  #map {
+    height: 600px;
+    width: 100%;
+  }
+</style>
 
 </head>

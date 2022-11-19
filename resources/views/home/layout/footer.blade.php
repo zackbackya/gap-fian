@@ -7,21 +7,23 @@
         <div class="col-sm-12 col-md-4">
           <div class="widget-a">
             <div class="w-header-a">
-              <h3 class="w-title-a text-brand">Garda Adhi Pratama</h3>
+              <h3 class="w-title-a text-brand">{{ $profile->company_name }}</h3>
             </div>
             <div class="w-body-a">
               <p class="w-text-a color-text-a">
-                Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
-                sed aute irure.
+                {{$profile->address}}
               </p>
             </div>
             <div class="w-footer-a">
               <ul class="list-unstyled">
                 <li class="color-a">
-                  <span class="color-text-a">Phone .</span> contact@example.com
+                  <span class="color-text-a">Phone .</span> {{ $profile->phone }}
                 </li>
                 <li class="color-a">
-                  <span class="color-text-a">Email .</span> +54 356 945234
+                  <span class="color-text-a">Whatsapp .</span> {{ $profile->whatsapp }}
+                </li>
+                <li class="color-a">
+                  <span class="color-text-a">Email .</span> {{ $profile->email }}
                 </li>
               </ul>
             </div>
@@ -61,23 +63,18 @@
           <div class="socials-a">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="www.facebook.com/gardaadhipratama">
+                <a href="http://www.facebook.com/{{ $profile->facebook }}">
                   <i class="bi bi-facebook" aria-hidden="true"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="www.twitter.com/gardaadhipratama">
-                  <i class="bi bi-twitter" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="www.instagram.com/gardaadhipratama">
+                <a href="http://www.instagram.com/{{ $profile->instagram }}">
                   <i class="bi bi-instagram" aria-hidden="true"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="www.linkedin.com/gardaadhipratama">
-                  <i class="bi bi-linkedin" aria-hidden="true"></i>
+                <a href="http://wa.me/{{ $profile->whatsapp }}">
+                  <i class="bi bi-whatsapp" aria-hidden="true"></i>
                 </a>
               </li>
             </ul>

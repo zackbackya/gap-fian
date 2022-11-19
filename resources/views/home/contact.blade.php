@@ -36,41 +36,48 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="contact-map box">
-              <div id="map" class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1974.6575555611128!2d113.7273972049758!3d-8.17097484936795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sgarda%20adhi%20pratama!5e0!3m2!1sid!2sid!4v1668534795635!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
+                  <input type="hidden" class="form-control latitude" id="latitude" name="latitude" value="{{ $profile->latitude }}">
+                  <input type="hidden" class="form-control longitude" id="longitude" name="longitude" value="{{ $profile->longitude }}">
+              <div id="map"></div>
             </div>
           </div>
           <div class="col-sm-12 section-t8">
             <div class="row">
               <div class="col-md-7">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <form action="/contact" method="post" role="form" class="php-email-form">
+                  @csrf
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <input type="text" name="name" class="form-control form-control-lg form-control-a" placeholder="Your Name" required>
+                        <input type="text" name="name" id="name" class="form-control form-control-lg form-control-a" placeholder="Your Name" required>
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <input name="email" type="email" class="form-control form-control-lg form-control-a" placeholder="Your Email" required>
+                        <input name="email" type="email" id="email" class="form-control form-control-lg form-control-a" placeholder="Your Email" required>
                       </div>
                     </div>
                     <div class="col-md-12 mb-3">
                       <div class="form-group">
-                        <input type="text" name="subject" class="form-control form-control-lg form-control-a" placeholder="Subject" required>
+                        <input type="text" name="subject" id="subject" class="form-control form-control-lg form-control-a" placeholder="Subject" required>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <textarea name="message" class="form-control" name="message" cols="45" rows="8" placeholder="Message" required></textarea>
+                        <textarea name="message" id="message" class="form-control" name="message" cols="45" rows="8" placeholder="Message" required></textarea>
                       </div>
                     </div>
                     <div class="col-md-12 my-3">
                       <div class="mb-3">
                         <div class="loading">Loading</div>
                         <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                        @if(session()->has('success'))
+                        <div class="sent-message">
+                        {{ session('success') }}
+                        </div>
+                       @endif
+                        
+                      
                       </div>
                     </div>
 
@@ -87,14 +94,17 @@
                   </div>
                   <div class="icon-box-content table-cell">
                     <div class="icon-box-title">
-                      <h4 class="icon-title">Say Hello</h4>
+                      <h4 class="icon-title">Hubungi Kami</h4>
                     </div>
                     <div class="icon-box-content">
                       <p class="mb-1">Email.
-                        <span class="color-a">contact@example.com</span>
+                        <span class="color-a">{{ $profile->email }}</span>
                       </p>
                       <p class="mb-1">Phone.
-                        <span class="color-a">+54 356 945234</span>
+                        <span class="color-a">{{ $profile->phone }}</span>
+                      </p>
+                      <p class="mb-1">Whatsapp.
+                        <span class="color-a">{{ $profile->whatsapp }}</span>
                       </p>
                     </div>
                   </div>
@@ -105,12 +115,11 @@
                   </div>
                   <div class="icon-box-content table-cell">
                     <div class="icon-box-title">
-                      <h4 class="icon-title">Find us in</h4>
+                      <h4 class="icon-title">Alamat Kami</h4>
                     </div>
                     <div class="icon-box-content">
                       <p class="mb-1">
-                        Manhattan, Nueva York 10036,
-                        <br> EE. UU.
+                        {{$profile->address}}
                       </p>
                     </div>
                   </div>
@@ -121,33 +130,29 @@
                   </div>
                   <div class="icon-box-content table-cell">
                     <div class="icon-box-title">
-                      <h4 class="icon-title">Social networks</h4>
+                      <h4 class="icon-title">Social Media</h4>
                     </div>
                     <div class="icon-box-content">
                       <div class="socials-footer">
                         <ul class="list-inline">
                           <li class="list-inline-item">
-                            <a href="#" class="link-one">
+                            <a href="http://www.facebook.com/{{ $profile->facebook }}">
                               <i class="bi bi-facebook" aria-hidden="true"></i>
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="#" class="link-one">
-                              <i class="bi bi-twitter" aria-hidden="true"></i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a href="#" class="link-one">
+                            <a href="http://www.instagram.com/{{ $profile->instagram }}">
                               <i class="bi bi-instagram" aria-hidden="true"></i>
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="#" class="link-one">
-                              <i class="bi bi-linkedin" aria-hidden="true"></i>
+                            <a href="http://wa.me/{{ $profile->whatsapp }}">
+                              <i class="bi bi-whatsapp" aria-hidden="true"></i>
                             </a>
                           </li>
                         </ul>
                       </div>
+
                     </div>
                   </div>
                 </div>

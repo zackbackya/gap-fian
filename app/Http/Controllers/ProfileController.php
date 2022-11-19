@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\profile;
 use App\Http\Requests\StoreprofileRequest;
 use App\Http\Requests\UpdateprofileRequest;
+use App\Models\Profile;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -16,6 +17,10 @@ class ProfileController extends Controller
     public function index()
     {
         //
+        return view('admin.profile.profile',[
+            "title" => "profile",
+            "profiles" => Profile::all()     
+        ]);
     }
 
     /**
@@ -25,7 +30,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.profile.create',[
+            "title" => "profile"
+        ]);
     }
 
     /**
@@ -36,7 +43,43 @@ class ProfileController extends Controller
      */
     public function store(StoreprofileRequest $request)
     {
-        //
+        if($request->logo_path){
+            if($request->old_logo_path){
+                Storage::delete($request->old_logo_path);
+            }
+            $logo_path= $request->file('logo_path')->store('uploaded_images');
+        }else {
+            $logo_path = $request->old_logo_path;
+        }
+
+        if($request->photo_path){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $photo_path= $request->file('photo_path')->store('uploaded_images');
+        }else {
+            $photo_path = $request->old_photo_path;
+        }
+
+        Profile::create([
+            'company_name' => $request->company_name,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
+            'address' => $request->address,
+            'email' => $request->email,                
+            'phone' => $request->phone,
+            'whatsapp' => $request->whatsapp,
+            'website' => $request->website,
+            'instagram' => $request->instagram,
+            'facebook' => $request->facebook,
+            'logo_path' => $logo_path,
+            'photo_path' => $photo_path
+        ]);
+        return redirect('/dashboard/profile')->with('success','Data Sukses Ditambahkan');
+
+
+
+
     }
 
     /**
@@ -59,6 +102,11 @@ class ProfileController extends Controller
     public function edit(profile $profile)
     {
         //
+        return view('admin.profile.edit',[
+            "title" => "profile",
+            'profile' => $profile
+                           
+        ]);
     }
 
     /**
@@ -70,7 +118,45 @@ class ProfileController extends Controller
      */
     public function update(UpdateprofileRequest $request, profile $profile)
     {
-        //
+        if($request->photo_path){
+            if($request->old_photo_path){
+                Storage::delete($request->old_photo_path);
+            }
+            $photo_path= $request->file('photo_path')->store('uploaded_images');
+        }else {
+            $photo_path = $request->old_photo_path;
+        }
+
+        if($request->logo_path){
+            if($request->old_logo_path){
+                Storage::delete($request->old_logo_path);
+            }
+            $logo_path= $request->file('logo_path')->store('uploaded_images');
+        }else {
+            $logo_path = $request->old_logo_path;
+        }
+
+    
+            //Agent::where('id', $agent->id)->update($validateData);
+    
+            Profile::where('id', $profile->id)
+            ->update([
+                'company_name' => $request->company_name,
+                'longitude' => $request->longitude,
+                'latitude' => $request->latitude,
+                'address' => $request->address,
+                'email' => $request->email,
+                'phone' => $request->phone,           
+                'whatsapp' => $request->whatsapp,
+                'website' => $request->website,
+                'instagram' => $request->instagram,
+                'facebook' => $request->facebook,
+                'logo_path' => $logo_path,
+                'photo_path' => $photo_path
+            ]);
+
+    
+            return redirect('/dashboard/profile');//->with('success','Data Sukses Dirubah');
     }
 
     /**

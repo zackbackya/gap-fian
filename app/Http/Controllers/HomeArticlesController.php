@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Profile;
 use Illuminate\Support\Facades\DB;
 
 class HomeArticlesController extends Controller
@@ -21,7 +22,8 @@ class HomeArticlesController extends Controller
 
             return view('home.articles-grid',[
             "title" => "articles",
-            "articles" => $articles
+            "articles" => $articles,
+            'profile' => Profile::firstorfail()
         ]);
     }
 
@@ -34,6 +36,7 @@ class HomeArticlesController extends Controller
 
         return view('home.articles-single',[
             "title" => "articles",
+            'profile' => Profile::firstorfail(),
             'article' => Article::where('slug', $slug)
             ->join('category_articles', 'articles.category_id', '=', 'category_articles.id')
             ->select('articles.*', 'category_articles.category_name as category_name')->first()

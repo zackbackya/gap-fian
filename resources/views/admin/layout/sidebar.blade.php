@@ -116,6 +116,20 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="/dashboard/message" class="nav-link {{ ($title === "message")? 'active' : '' }}">
+              <i class="nav-icon fa fa-envelope"></i>
+              <p>Pesan</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/dashboard/testimony" class="nav-link {{ ($title === "testimony")? 'active' : '' }}">
+              <i class="nav-icon fa fa-comments"></i>
+              <p>Testimoni</p>
+            </a>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

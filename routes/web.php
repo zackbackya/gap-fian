@@ -8,13 +8,18 @@ use App\Http\Controllers\CategoryArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryListingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\HomeAgentsController;
 use App\Http\Controllers\HomeArticlesController;
+use App\Http\Controllers\HomeContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeListingsController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\TestimonyController;
 use App\Models\Category;
 use App\Models\CategoryArticle;
 use Illuminate\Support\Facades\Route;
@@ -35,19 +40,8 @@ use Illuminate\Support\Facades\Route;
  
 
 
-Route::get('/about', function () {
-    //return view('welcome');
-    return view('home.about',[
-        "title" => "agent"
-    ]);
-});
 
-Route::get('/contact', function () {
-    //return view('welcome');
-    return view('home.contact',[
-        "title" => "contact"
-    ]);
-});
+
 
 
 
@@ -55,28 +49,15 @@ Route::get('/contact', function () {
 //route for backend page
 
 
-Route::get('/dashboard/report', function () {
-    return view('admin.report',[
-        "title" => "report"
-    ]);
-});
 
 
-
-Route::get('/dashboard/profile', function () {
-    return view('admin.profile',[
-        "title" => "profile"
-    ]);
-});
 
 //Route::get('/dashboard/article',[ArticleController::class, 'index']);
 
 Route::get('/',[HomeController::class, 'index']);
 Route::resource('/articles',HomeArticlesController::class);
 Route::get('/agents',[HomeAgentsController::class, 'index']);
-//Route::get('/listings',[HomeListingsController::class, 'index']);
-//Route::get('/listings/{slug}', [HomeListingsController::class, 'show']);
-
+Route::resource('/contact',HomeContactController::class);
 
 Route::resource('/listings',HomeListingsController::class);
 
@@ -100,6 +81,25 @@ Route::resource('/dashboard/agents',AgentController::class)->middleware('auth');
 Route::resource('/dashboard/article',ArticleController::class)->middleware('auth');
 Route::resource('/dashboard/user',UserLoginController::class)->middleware('superadmin');
 Route::resource('/dashboard/report',ReportController::class)->middleware('superadmin');
+
+Route::resource('/dashboard/profile',ProfileController::class)->middleware('auth');
+
+
+/*
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/dashboard/profile', 'index')->middleware('auth');
+    Route::get('/dashboard/profile/{id}/edit', 'edit')->middleware('auth');
+    Route::put('/dashboard/profile/{id}', 'update')->middleware('auth');
+});
+*/
+
+
+//Route::post('/message',[MessageController::class,'store']);
+Route::resource('/dashboard/message',MessageController::class)->middleware('auth');
+//Route::post('/send_message',[MessageController::class,'store']);
+
+Route::resource('/dashboard/testimony',TestimonyController::class)->middleware('auth');
+
 //Route::resource('/dashboard',Dashboard::class)->middleware('auth');
 
 Route::get('/dashboard',[Dashboard::class,'index'])->middleware('auth');

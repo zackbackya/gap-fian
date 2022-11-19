@@ -23,4 +23,21 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
  <!-- summernote -->
  <link rel="stylesheet" href="{{ asset('admin-template/plugins/summernote/summernote-bs4.min.css') }}">
+
+ 
+ 
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+
+ 
+
+<style>
+  #map {
+    height: 450px;
+    width: 100%;
+  }
+</style>
+
+
+
 </head>

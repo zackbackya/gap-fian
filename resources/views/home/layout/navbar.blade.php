@@ -7,7 +7,18 @@
         <span></span>
         <span></span>
       </button>
-      <a class="navbar-brand text-brand" href="/">Garda Adhi<span class="color-b"> Pratama</span></a>
+
+      <?php
+      
+      $judul = explode(' ',$profile->company_name);
+      $akhir = array_pop($judul);
+      
+      $judul1 = $profile->company_name;
+      $awal = explode( " ", $judul1 );
+              array_splice( $awal, -1 );
+      ?>
+
+      <a class="navbar-brand text-brand" href="/">{{ implode( " ", $awal ); }}<span class="color-b"> {{ $akhir }}</span></a>
 
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
         <ul class="navbar-nav">
@@ -30,9 +41,11 @@
             <a class="nav-link {{ ($title === "articles")? 'active' : '' }}" href="/articles">Articles</a>
           </li>
 
+          <!--
           <li class="nav-item">
             <a class="nav-link {{ ($title === "about")? 'active' : '' }} " href="/about">About</a>
           </li>
+        -->
 
           <!--
           <li class="nav-item dropdown">

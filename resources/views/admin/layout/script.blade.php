@@ -84,19 +84,29 @@ const slug = document.querySelector('#slug');
   <script>
       $('#content').summernote();
   $('#description').summernote();
+  $('#testimony').summernote();
     </script>
 
 
   <script>
     $(function () {
-        bsCustomFileInput.init();
+        bsCustomFileInput.init(); 
       });
 
-      $('input[type="file"]').change(function(e){
+      $('#logo_path').change(function(e){
         var fileName = e.target.files[0].name;
-        $('.custom-file-label').html(fileName);
+        $('.logo_path_label').html(fileName);
     });
 
+    $('#photo_path').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.photo_path_label').html(fileName);
+    });
+
+    </script>
+    
+
+<script>
 var el = document.querySelector('input.number');
 el.addEventListener('keyup', function (event) {
   if (event.which >= 37 && event.which <= 40) return;
@@ -126,6 +136,20 @@ el.addEventListener('keyup', function (event) {
 
 <script>
 
+function readURLLogo(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('.img-preview-logo').attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+ </script>
+
+<script>
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -139,6 +163,7 @@ function readURL(input) {
 }
  </script>
 
+ 
 <script>
   const status = document.querySelector('#status');
       window.onload = function() {
@@ -161,3 +186,47 @@ status.addEventListener('change', function() {
 
 
   </script>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiemFja2JhY2t5YSIsImEiOiJjbGFqa3ZhNjUwZHYyM3ZwNjB0NHFkcTMxIn0.i65rBzYXz8mLLQisALEWBw';
+const coordinates = document.getElementById('coordinates');
+
+const longitude = document.getElementById('longitude');
+const latitude = document.getElementById('latitude');
+let long = 113.70223187765623;
+let lat = -8.169066414092072;
+
+if(longitude.value != "" && latitude.value != "" ){
+  long = longitude.value;
+  lat = latitude.value;
+}
+
+
+const map = new mapboxgl.Map({
+container: 'map',
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+style: 'mapbox://styles/mapbox/streets-v11',
+center: [long, lat],
+zoom: 16
+});
+
+
+//-8.168569, 113.702146
+ 
+const marker = new mapboxgl.Marker({
+draggable: true
+})
+.setLngLat([long, lat])
+.addTo(map);
+ 
+function onDragEnd() {
+const lngLat = marker.getLngLat();
+coordinates.style.display = 'block';
+coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+
+longitude.value = lngLat.lng;
+latitude.value = lngLat.lat;
+
+}
+ 
+marker.on('dragend', onDragEnd);
+</script>

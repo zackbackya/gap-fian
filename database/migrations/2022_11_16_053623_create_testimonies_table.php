@@ -13,19 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('testimonies', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('address');
-            $table->string('longitude');
-            $table->string('latitude');
-            $table->string('phone');
-            $table->string('whatsapp');
-            $table->string('instagram');
-            $table->string('facebook');
-            $table->string('website');
-            $table->string('logo_path');
+            $table->string('name');
+            $table->string('testimony');
             $table->string('photo_path');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -37,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('testimonies');
     }
 };
