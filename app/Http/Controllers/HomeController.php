@@ -21,8 +21,8 @@ class HomeController extends Controller
         ->join('category_listings', 'listings.categoryListing_id', '=', 'category_listings.id')
         ->where('listings.status','=','Belum Terjual')
         ->select('listings.*', 'category_listings.category_name')
-        ->whereMonth('listings.created_at', date('m'))
-        ->whereYear('listings.created_at', date('Y'))
+        //->whereMonth('listings.created_at', date('m'))
+        //->whereYear('listings.created_at', date('Y'))
         ->orderBy('listings.created_at','desc')
         ->limit(5)
         ->get();
@@ -44,8 +44,8 @@ class HomeController extends Controller
         ->join('category_articles', 'articles.category_id', '=', 'category_articles.id')
         ->where('articles.status','=','T')
         ->select('articles.*', 'category_articles.category_name')
-        ->whereMonth('articles.created_at', date('m'))
-        ->whereYear('articles.created_at', date('Y'))
+        //->whereMonth('articles.created_at', date('m'))
+        //->whereYear('articles.created_at', date('Y'))
         ->orderBy('articles.created_at','desc')
         ->limit(5)
         ->get();

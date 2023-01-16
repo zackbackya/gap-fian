@@ -149,7 +149,7 @@
                       </div>
                   </div>
 
-
+                  <!--
                   <div class="form-group row">
                     <label for="photo_path" class="col-sm-2 col-form-label">Foto</label>
                       <div class="col-sm-10">
@@ -169,6 +169,7 @@
                       
                       </div>
                   </div>
+                -->
 
                 
               </div>

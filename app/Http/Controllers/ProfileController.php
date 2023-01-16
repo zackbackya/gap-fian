@@ -19,7 +19,8 @@ class ProfileController extends Controller
         //
         return view('admin.profile.profile',[
             "title" => "profile",
-            "profiles" => Profile::all()     
+            "profiles" => Profile::all(),
+            "profile" => Profile::firstorFail(),
         ]);
     }
 
@@ -52,6 +53,8 @@ class ProfileController extends Controller
             $logo_path = $request->old_logo_path;
         }
 
+        /*
+
         if($request->photo_path){
             if($request->old_photo_path){
                 Storage::delete($request->old_photo_path);
@@ -60,6 +63,7 @@ class ProfileController extends Controller
         }else {
             $photo_path = $request->old_photo_path;
         }
+        */
 
         Profile::create([
             'company_name' => $request->company_name,
@@ -72,8 +76,8 @@ class ProfileController extends Controller
             'website' => $request->website,
             'instagram' => $request->instagram,
             'facebook' => $request->facebook,
-            'logo_path' => $logo_path,
-            'photo_path' => $photo_path
+            'logo_path' => $logo_path
+          //  'photo_path' => $photo_path
         ]);
         return redirect('/dashboard/profile')->with('success','Data Sukses Ditambahkan');
 
@@ -118,6 +122,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateprofileRequest $request, profile $profile)
     {
+        /*
         if($request->photo_path){
             if($request->old_photo_path){
                 Storage::delete($request->old_photo_path);
@@ -126,7 +131,8 @@ class ProfileController extends Controller
         }else {
             $photo_path = $request->old_photo_path;
         }
-
+        */
+        
         if($request->logo_path){
             if($request->old_logo_path){
                 Storage::delete($request->old_logo_path);
@@ -135,7 +141,6 @@ class ProfileController extends Controller
         }else {
             $logo_path = $request->old_logo_path;
         }
-
     
             //Agent::where('id', $agent->id)->update($validateData);
     
@@ -151,8 +156,8 @@ class ProfileController extends Controller
                 'website' => $request->website,
                 'instagram' => $request->instagram,
                 'facebook' => $request->facebook,
-                'logo_path' => $logo_path,
-                'photo_path' => $photo_path
+                'logo_path' => $logo_path
+                //'photo_path' => $photo_path
             ]);
 
     

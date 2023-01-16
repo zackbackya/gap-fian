@@ -1,0 +1,7 @@
+#backgroundImage {
+    background-image: url({{asset(
+            "home-template/assets/img/home-background.jpg"
+        )}});
+    width: 100vh;
+    height: 100vh;
+}

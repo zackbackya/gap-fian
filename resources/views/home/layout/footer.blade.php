@@ -1,7 +1,7 @@
 
 
   <!-- ======= Footer ======= -->
-  <section class="section-footer">
+  <section class="section-footer nav-img">
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-4">
@@ -34,7 +34,7 @@
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="nav-img">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -63,17 +63,17 @@
           <div class="socials-a">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="http://www.facebook.com/{{ $profile->facebook }}">
+                <a target="_blank" href="http://www.facebook.com/{{ $profile->facebook }}">
                   <i class="bi bi-facebook" aria-hidden="true"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="http://www.instagram.com/{{ $profile->instagram }}">
+                <a target="_blank" href="http://www.instagram.com/{{ $profile->instagram }}">
                   <i class="bi bi-instagram" aria-hidden="true"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="http://wa.me/{{ $profile->whatsapp }}">
+                <a target="_blank" href="http://wa.me/{{ $profile->whatsapp }}">
                   <i class="bi bi-whatsapp" aria-hidden="true"></i>
                 </a>
               </li>
@@ -82,7 +82,7 @@
           <div class="copyright-footer">
             <p class="copyright color-text-a">
               &copy; Copyright
-              <span class="color-a">zackbackya.dev using EstateAgency Template from W3Layouts.com</span> All Rights Reserved.
+              <span class="color-a"><a target="_blank" href="http://intagram.com/zackbackya">zackbackya</a> using EstateAgency Template from W3Layouts.com</span> All Rights Reserved.
             </p>
           </div>
           <div class="credits">
@@ -92,7 +92,7 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
           -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Designed by <a target="_blank" href="https://bootstrapmade.com/">BootstrapMade</a>
           </div>
         </div>
       </div>

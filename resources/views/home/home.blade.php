@@ -25,7 +25,6 @@
 
 <main id="main">
 
-  
 
   <!-- ======= Latest Properties Section ======= -->
   <section class="section-property section-t8">
@@ -34,7 +33,7 @@
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
             <div class="title-box">
-              <h2 class="title-a">Listing Properti Terbaru</h2>
+              <h2 class="title-a">Listing Properti Terkini</h2>
             </div>
             <div class="title-link">
               <a href="/listings">All Property

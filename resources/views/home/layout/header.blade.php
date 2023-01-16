@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('home-template/assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('storage/' . $profile->logo_path )}}" rel="icon">
   <link href="{{ asset('home-template/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -51,11 +51,52 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://api.whatsapp.com/send?phone={{ $profile->whatsapp }}&text=Hi%20Admin%21%20Saya%20Ingin%20Mencari%20Rumah%20" class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+
 <style>
   #map {
     height: 600px;
     width: 100%;
   }
+
+ .bg-img {
+  background-image: url({{asset(
+            "home-template/assets/img/home-background.jpg"
+        )}});
+ }
+
+ .nav-img {
+  background-image: url({{asset(
+            "home-template/assets/img/nav-background.jpg"
+        )}});
+ }
+
+ .float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:75px;
+	right:7px;
+	background-color:#d4af37;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
+}
+
+
+
 </style>
 
 </head>
+<body>
+  <div class="bg-img">

@@ -136,17 +136,17 @@
                       <div class="socials-footer">
                         <ul class="list-inline">
                           <li class="list-inline-item">
-                            <a href="http://www.facebook.com/{{ $profile->facebook }}">
+                            <a target="_blank" href="http://www.facebook.com/{{ $profile->facebook }}">
                               <i class="bi bi-facebook" aria-hidden="true"></i>
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="http://www.instagram.com/{{ $profile->instagram }}">
+                            <a target="_blank" href="http://www.instagram.com/{{ $profile->instagram }}">
                               <i class="bi bi-instagram" aria-hidden="true"></i>
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="http://wa.me/{{ $profile->whatsapp }}">
+                            <a target="_blank" href="http://wa.me/{{ $profile->whatsapp }}">
                               <i class="bi bi-whatsapp" aria-hidden="true"></i>
                             </a>
                           </li>

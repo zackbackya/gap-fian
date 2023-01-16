@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin | GAP</title>
 
+  <link href="{{ asset('storage/' . $profile->logo_path )}}" rel="icon">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -28,6 +29,11 @@
  
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+
+ <!-- Preloader -->
+ <div class="preloader flex-column justify-content-center align-items-center">
+  <img class="animation__wobble" src="{{ asset('storage/' . $profile->logo_path )}}" alt="" height="60" width="60">
+</div>
 
  
 

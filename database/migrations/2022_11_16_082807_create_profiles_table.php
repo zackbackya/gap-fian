@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('facebook');
             $table->string('website');
             $table->string('logo_path');
-            $table->string('photo_path');
             $table->timestamps();
         });
     }
